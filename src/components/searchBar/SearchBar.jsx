@@ -7,7 +7,6 @@ const SearchBar = () => {
     <div className="flex-row-center search-container">
       <SearchIcon size={24} className="icon search-icon" />
       <input type="text" placeholder="Search" className="search-input" />
-      <div></div>
     </div>
   );
 };

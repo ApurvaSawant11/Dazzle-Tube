@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
 
       if (status === 201) {
         localStorage.setItem(
-          "DazzleTube Tokken",
+          "DazzleTube Signup",
           JSON.stringify({ token: encodedToken })
         );
         setToken(encodedToken);

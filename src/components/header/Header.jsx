@@ -6,7 +6,15 @@ import { SearchBar } from "../searchBar/SearchBar";
 import { useAuth } from "../../context";
 
 const Header = () => {
-  const { user } = useAuth();
+  const { user, setUser, setToken } = useAuth();
+
+  const logoutHandler = () => {
+    setUser("");
+    localStorage.removeItem("DazzleTube User");
+    setToken("");
+    localStorage.removeItem("DazzleTube Token");
+  };
+
   return (
     <header className="header-bar secondary">
       <Link to="/" className="logo flex-row-center">
@@ -22,7 +30,12 @@ const Header = () => {
             Login
           </Link>
         ) : (
-          <button className="button inverted-secondary radius-0">Logout</button>
+          <button
+            className="button inverted-secondary radius-0"
+            onClick={logoutHandler}
+          >
+            Logout
+          </button>
         )}
       </div>
     </header>
