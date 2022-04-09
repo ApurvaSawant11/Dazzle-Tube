@@ -12,3 +12,10 @@ body {
   cursor: pointer;
 }
 
+.primary {
+  color: var(--theme-text-color);
+}
+
+.inverted-primary:hover, .inverted-primary:focus {
+  color: var(--theme-text-color);
+}

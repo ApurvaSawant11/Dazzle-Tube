@@ -56,7 +56,7 @@ const Login = () => {
             Remember me
           </label>
           <Link
-            to="/forgotpassword"
+            to="/forgot_password"
             className="button-link secondary-text fw-700"
           >
             Forgot Password?
