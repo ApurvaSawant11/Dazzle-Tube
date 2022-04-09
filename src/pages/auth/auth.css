@@ -1,0 +1,35 @@
+.auth-container {
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    margin: 2rem auto;
+    box-shadow: 0px 1px 10px 4px var(--shadow);
+    width: max-content;
+}
+
+.login-form, .signup-form {
+    width: 25rem;
+    align-self: center;
+}
+
+.authbox-container {
+    font-size: small;
+    justify-content: space-between;
+    white-space: nowrap;
+    gap: 0.5rem;
+}
+
+.authbox-container label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.form-btn {
+    width: 100%;
+}
+
+.input {
+    background: transparent;
+    color: var(--theme-text-color);
+}
