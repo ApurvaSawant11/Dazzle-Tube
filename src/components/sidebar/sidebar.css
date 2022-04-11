@@ -1,0 +1,45 @@
+.sidebar-container {
+    background: var(--light-bg);
+    width: 15rem;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    overflow-y: auto;
+}
+
+.sidebar-item {
+    color: var(--theme-text-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    padding: 1rem 1rem 0.8rem 1.5rem;
+}
+
+.sidebar-item:hover {
+    background: var(--hover-color);
+}
+
+.collapsed {
+    width: 5rem;
+    gap: 1rem;
+}
+
+.collapsed .sidebar-item {
+    flex-direction: column;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.collapsed .sidebar-icon {
+    margin: 0;
+    height: 1.4rem;
+}
+
+.collapsed span {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}

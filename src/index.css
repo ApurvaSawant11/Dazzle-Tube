@@ -3,11 +3,12 @@
 :root {
   --primary: #FA2742;
   --secondary: #E8EAE3;
-  --theme-bg: #2d2d2d;
-  --header-bg:#3d3d3d;
+  --theme-bg: #222222;
+  --light-bg:#2e2d2df7;
+  --hover-color: #525252cc;
   --theme-text-color: #E8EAE3;
   --shadow: #3c3c3c;
-  --border-color: #646464;
+  --border-color: #525151;
 
 }
 

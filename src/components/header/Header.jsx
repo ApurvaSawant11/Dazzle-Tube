@@ -1,6 +1,6 @@
 import React from "react";
 import "./header.css";
-import { logo } from "../../assets";
+import { HambugerIcon, logo } from "../../assets";
 import { Link } from "react-router-dom";
 import { SearchBar } from "../searchBar/SearchBar";
 import { useAuth } from "../../context";
@@ -17,12 +17,15 @@ const Header = () => {
 
   return (
     <header className="header-bar secondary">
-      <Link to="/" className="logo flex-row-center">
-        <img src={logo} className="logo-img" alt="dazzle tube logo" />
-        <div className="logo-name pl-1">
-          Dazzle<span className="primary-text">Tube</span>
-        </div>
-      </Link>
+      <div className="flex-row-center">
+        <HambugerIcon className="icon mr-1" size={24} />
+        <Link to="/" className="logo flex-row-center">
+          <img src={logo} className="logo-img" alt="dazzle tube logo" />
+          <div className="logo-name pl-0p5">
+            Dazzle<span className="primary-text">Tube</span>
+          </div>
+        </Link>
+      </div>
       <SearchBar />
       <div>
         {!user ? (

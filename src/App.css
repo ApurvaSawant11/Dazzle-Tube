@@ -1,6 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
+
 body {
   background: var(--theme-bg);
   color: var(--theme-text-color);
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.video-container {
+  margin-left: 15rem;
+}
+
+.collapsed ~ .video-container {
+  margin-left: 5rem;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  grid-gap: 1rem;
+  padding: 1.5rem;
 }
 
 .radius-0 {
@@ -19,3 +37,5 @@ body {
 .inverted-primary:hover, .inverted-primary:focus {
   color: var(--theme-text-color);
 }
+
+
