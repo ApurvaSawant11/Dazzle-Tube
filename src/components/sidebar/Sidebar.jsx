@@ -17,7 +17,6 @@ const Sidebar = () => {
 
   const onWindowResizeHandler = useDebouncedCallback(() => {
     setWindowWidth(window.innerWidth);
-    console.log("size:", window.innerWidth);
   });
   onWindowResize(onWindowResizeHandler);
 
