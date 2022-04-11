@@ -1,0 +1,21 @@
+.header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--header-bg);
+    padding: 1rem;
+    position: sticky;
+    top:0;
+}
+
+.logo {
+    text-decoration: none;
+    color: var(--secondary);
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.logo-img {
+    width: 2rem;
+}
+
