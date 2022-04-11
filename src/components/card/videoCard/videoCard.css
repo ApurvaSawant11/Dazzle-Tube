@@ -10,6 +10,10 @@
     object-fit: cover;
 }
 
+.card-details {
+    position: relative;
+}
+
 .card-title {
     font-weight: 700;
     height: 3rem;
@@ -18,4 +22,20 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+}
+
+.card-dropdown {
+    position: absolute;
+    background: var(--light-bg);
+    border: 1px solid var(--border-color);
+    z-index: 2;
+    right: 1.2rem;
+    top: 1rem;
+}
+
+.card-dropdown > li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
 }
