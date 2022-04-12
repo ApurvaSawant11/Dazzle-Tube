@@ -8,7 +8,6 @@ import {
   WatchLaterIcon,
 } from "../../assets";
 import "./sidebar.css";
-import { useWindowResize } from "beautiful-react-hooks";
 import { useGlobalEvent, useDebouncedCallback } from "beautiful-react-hooks";
 
 const Sidebar = () => {
