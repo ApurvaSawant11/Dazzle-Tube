@@ -1,0 +1,27 @@
+.list-card {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    width: 70%;
+    margin: 1rem auto;
+    position: relative;
+}
+
+.list-card-img{
+    width: 11rem;
+    height: 6rem;
+    object-fit: cover;
+}
+
+.list-card-details {
+    width: 30rem;
+}
+
+.dropdown-icon {
+    align-self: center;
+    cursor: pointer;
+}
+
+.list-dropdown {
+    top: 4rem;
+}

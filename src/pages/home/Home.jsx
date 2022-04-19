@@ -9,12 +9,15 @@ const Home = () => {
     <div className="video-container">
       <div className="category-chips flex-row">
         {categoryList &&
-          categoryList.map(({ categoryName }) => (
-            <div className="chip">{categoryName}</div>
+          categoryList.map(({ categoryName }, index) => (
+            <div className="chip" key={index}>
+              {categoryName}
+            </div>
           ))}
       </div>
       <div className="video-grid">
-        {videos && videos.map((video) => <VideoCard video={video} />)}
+        {videos &&
+          videos.map((video) => <VideoCard key={video._id} video={video} />)}
       </div>
     </div>
   );

@@ -1,17 +1,14 @@
 import axios from "axios";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useReducer,
-} from "react";
-import { videoReducer, initialVideoState } from "../reducer/videoReducer";
+  sharedVideoReducer,
+  initialVideoState,
+} from "../reducer/sharedVideoReducer";
 
 const VideoContext = createContext();
 
 const VideoProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(videoReducer, initialVideoState);
+  const [state, dispatch] = useReducer(sharedVideoReducer, initialVideoState);
 
   useEffect(() => {
     (async () => {

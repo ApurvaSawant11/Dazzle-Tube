@@ -3,8 +3,7 @@
     width: 15rem;
     height: 100vh;
     position: fixed;
-    left: 0;
-    overflow-y: auto;
+    z-index: 3;
 }
 
 .sidebar-item {
@@ -42,4 +41,20 @@
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
+}
+
+.collapsed-absolute ~ .video-container {
+    margin-left: 5rem;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.collapsed-absolute-small ~ .video-container {
+    margin-left: 0;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+.sidebar-container.display-none ~ .video-container {
+    margin-left: 0;
 }

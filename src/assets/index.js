@@ -1,6 +1,22 @@
-export { default as logo } from "./logo.png"
+export { default as logo } from "./logo.png";
 
-export { MdLogin as LoginIcon, MdLogout as logoutIcon, MdSearch as SearchIcon, MdOutlineWatchLater as WatchLaterIcon, MdHistory as HistoryIcon, MdMoreVert as MoreIcon } from "react-icons/md";
+export {
+  MdLogin as LoginIcon,
+  MdLogout as logoutIcon,
+  MdSearch as SearchIcon,
+  MdWatchLater as WatchLaterIcon,
+  MdOutlineWatchLater as OutlinedWatchLaterIcon,
+  MdHistory as HistoryIcon,
+  MdMoreVert as MoreIcon,
+  MdPlaylistAdd as PlaylistIcon,
+} from "react-icons/md";
 export { GiHamburgerMenu as HambugerIcon } from "react-icons/gi";
-export { AiFillHome as HomeIcon, AiOutlinePlaySquare as PlaylistIcon } from "react-icons/ai";
-export { BiLike as LikeIcon } from "react-icons/bi";
+export {
+  AiFillHome as HomeIcon,
+  AiOutlineLike as OutlinedLikeIcon,
+  AiFillLike as LikeIcon,
+} from "react-icons/ai";
+export { BiShare as ShareIcon } from "react-icons/bi";
+export { BsDot as DotIcon } from "react-icons/bs";
+export { IoMdList as CommentIcon } from "react-icons/io";
+export { FaRegTrashAlt as TrashIcon } from "react-icons/fa";

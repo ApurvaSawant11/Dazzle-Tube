@@ -1,30 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import {
   HistoryIcon,
   HomeIcon,
-  LikeIcon,
+  OutlinedLikeIcon,
+  OutlinedWatchLaterIcon,
   PlaylistIcon,
-  WatchLaterIcon,
 } from "../../assets";
 import "./sidebar.css";
-import { useGlobalEvent, useDebouncedCallback } from "beautiful-react-hooks";
 
-const Sidebar = () => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const onWindowResize = useGlobalEvent("resize");
-
-  const onWindowResizeHandler = useDebouncedCallback(() => {
-    setWindowWidth(window.innerWidth);
-  });
-  onWindowResize(onWindowResizeHandler);
-
+const Sidebar = ({ showSidebar }) => {
   return (
-    <div
-      className={`sidebar-container flex-column ${
-        windowWidth < 1240 ? "collapsed" : ""
-      }`}
-    >
+    <div className={`sidebar-container flex-column ${showSidebar}`}>
       <Link to="/" className="sidebar-item">
         <HomeIcon className="icon mr-1 sidebar-icon" size={24} />
         <span>Home</span>
@@ -34,11 +21,11 @@ const Sidebar = () => {
         <span>Playlist</span>
       </Link>
       <Link to="/watchLater" className="sidebar-item">
-        <WatchLaterIcon className="icon mr-1 sidebar-icon" size={24} />
+        <OutlinedWatchLaterIcon className="icon mr-1 sidebar-icon" size={24} />
         <span>Watch Later</span>
       </Link>
       <Link to="/likedVideos" className="sidebar-item">
-        <LikeIcon className="icon mr-1 sidebar-icon" size={24} />
+        <OutlinedLikeIcon className="icon mr-1 sidebar-icon" size={24} />
         <span>Liked Videos</span>
       </Link>
       <Link to="/history" className="sidebar-item">

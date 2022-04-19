@@ -7,6 +7,7 @@ body {
 }
 
 .video-container {
+  width: 100%;
   margin-left: 15rem;
 }
 
@@ -38,4 +39,12 @@ body {
   color: var(--theme-text-color);
 }
 
+.rotate-y-180 {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg)
+}
+
+.display-none {
+  display: none;
+}
 
