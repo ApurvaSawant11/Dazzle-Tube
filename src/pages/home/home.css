@@ -6,6 +6,7 @@
     padding-left: 1.5rem;
     position: sticky;
     top: 4rem;
+    z-index: 2;
 }
 
 .chip {

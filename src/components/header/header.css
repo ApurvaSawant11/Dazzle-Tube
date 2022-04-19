@@ -6,6 +6,7 @@
     padding: 0.7rem 1.5rem;
     position: sticky;
     top:0;
+    z-index: 3;
 }
 
 .logo {
@@ -15,7 +16,6 @@
     font-weight: bold;
 }
 
-.logo-img {
+.logo-image {
     width: 1.5rem;
 }
-
