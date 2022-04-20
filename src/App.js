@@ -9,6 +9,7 @@ import {
   Login,
   Signup,
   SingleVideo,
+  WatchLater,
 } from "./pages";
 // mockman-js
 import Mockman from "mockman-js";
@@ -28,6 +29,7 @@ function App() {
           <Route path="/watch/:watchId" element={<SingleVideo />} />
           <Route element={<RequiresAuth />}>
             <Route path="/likedVideos" element={<LikedVideos />} />
+            <Route path="/watchLater" element={<WatchLater />} />
           </Route>
           <Route path="/mockman" element={<Mockman />} />
         </Routes>

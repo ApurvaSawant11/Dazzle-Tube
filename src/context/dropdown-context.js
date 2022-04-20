@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { v4 as uuid } from "uuid";
-import { useLike } from "../context";
 import {
   WatchLaterIcon,
   OutlinedWatchLaterIcon,
@@ -10,14 +9,20 @@ import {
   LikeIcon,
   OutlinedLikeIcon,
 } from "../assets";
-
+import { useVideo } from "./video-context";
+import {
+  addToLikedVideos,
+  removeFromLikedVideos,
+  addToWatchLater,
+  removeFromWatchLater,
+} from "../services";
 const DropdownContext = createContext();
 
 const DropdownProvider = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { addToLikedVideos, removeFromLikedVideos } = useLike();
   const [showDropdown, setShowDropdown] = useState("");
+  const { dispatch } = useVideo();
 
   useEffect(() => {
     const handleDocumentClick = () => {
@@ -37,6 +42,17 @@ const DropdownProvider = ({ children }) => {
       {
         _id: uuid(),
         option: `${isInWatchLater ? "Remove from" : "Add to"} Watch Later`,
+        onClickHandler: (video, token) => {
+          if (token) {
+            if (isInWatchLater) {
+              removeFromWatchLater(dispatch, video, token);
+            } else {
+              addToWatchLater(dispatch, video, token);
+            }
+          } else {
+            navigate("/login");
+          }
+        },
         Icon: () =>
           isInWatchLater ? (
             <WatchLaterIcon size={22} className="mr-0p5" />
@@ -74,9 +90,9 @@ const DropdownProvider = ({ children }) => {
             onClickHandler: (video, token) => {
               if (token) {
                 if (isInLiked) {
-                  removeFromLikedVideos(video, token);
+                  removeFromLikedVideos(dispatch, video, token);
                 } else {
-                  addToLikedVideos(video, token);
+                  addToLikedVideos(dispatch, video, token);
                 }
               } else {
                 navigate("/login");

@@ -48,3 +48,7 @@ body {
   display: none;
 }
 
+.content-between  {
+  justify-content: space-between;
+}
+

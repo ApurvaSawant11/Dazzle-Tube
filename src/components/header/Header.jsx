@@ -21,13 +21,13 @@ const Header = ({ showSidebar, setShowSidebar }) => {
 
   useEffect(() => {
     setShowSidebar(
-      location.pathname.includes("/watch")
+      location.pathname.includes("/watch/")
         ? "collapsed display-none"
         : getSidebarClass(window.innerWidth)
     );
 
     const handleWindowResize = () => {
-      if (!location.pathname.includes("/watch")) {
+      if (!location.pathname.includes("/watch/")) {
         setShowSidebar(getSidebarClass(window.innerWidth));
       }
     };
@@ -58,7 +58,7 @@ const Header = ({ showSidebar, setShowSidebar }) => {
       <div className="flex-row-center">
         <HambugerIcon
           className={`icon mr-1 ${
-            location.pathname.includes("/watch")
+            location.pathname.includes("/watch/")
               ? ""
               : window.innerWidth < 760
               ? ""

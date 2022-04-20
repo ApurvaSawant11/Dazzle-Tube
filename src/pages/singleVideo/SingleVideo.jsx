@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./singleVideo.css";
 import { useParams, useNavigate } from "react-router-dom";
-import { useAuth, useLike, useVideo } from "../../context";
-import { VideoCard } from "../../components";
+import { useAuth, useVideo } from "../../context";
+import { SaveModal, VideoCard } from "../../components";
+import { addToLikedVideos, removeFromLikedVideos } from "../../services";
 import {
   CommentIcon,
   DotIcon,
@@ -14,18 +15,18 @@ import {
 
 const SingleVideo = () => {
   const { token } = useAuth();
-  const { addToLikedVideos, removeFromLikedVideos } = useLike();
   const [showButtons, setShowButtons] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const { watchId } = useParams();
   const navigate = useNavigate();
-  const { videos } = useVideo();
+  const { videos, dispatch } = useVideo();
   const video = videos?.find((video) => video._id === watchId);
 
   const likeHandler = (video) => {
     if (token) {
       video.isInLiked
-        ? removeFromLikedVideos(video, token)
-        : addToLikedVideos(video, token);
+        ? removeFromLikedVideos(dispatch, video, token)
+        : addToLikedVideos(dispatch, video, token);
     } else {
       navigate("/login");
     }
@@ -69,7 +70,7 @@ const SingleVideo = () => {
                 <ShareIcon className="rotate-y-180" size={24} />
                 <span className="pl-0p5">Share</span>
               </div>
-              <div className="action-icon">
+              <div className="action-icon" onClick={() => setShowModal(true)}>
                 <PlaylistIcon size={24} />
                 <span className="pl-0p5">Save</span>
               </div>
@@ -129,13 +130,19 @@ const SingleVideo = () => {
             </div>
           </div>
         </div>
-
         <div className="">
           {videos &&
             videos
               .slice(0, 4)
               .map((video) => <VideoCard key={video._id} video={video} />)}
         </div>
+        {showModal && (
+          <SaveModal
+            video={video}
+            showModal={showModal}
+            setShowModal={setShowModal}
+          />
+        )}
       </div>
     )
   );

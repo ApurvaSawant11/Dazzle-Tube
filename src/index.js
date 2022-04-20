@@ -4,12 +4,7 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
-import {
-  AuthProvider,
-  VideoProvider,
-  DropdownProvider,
-  LikeProvider,
-} from "./context";
+import { AuthProvider, VideoProvider, DropdownProvider } from "./context";
 
 // Call make Server
 makeServer();
@@ -21,11 +16,9 @@ root.render(
     <Router>
       <VideoProvider>
         <AuthProvider>
-          <LikeProvider>
-            <DropdownProvider>
-              <App />
-            </DropdownProvider>
-          </LikeProvider>
+          <DropdownProvider>
+            <App />
+          </DropdownProvider>
         </AuthProvider>
       </VideoProvider>
     </Router>

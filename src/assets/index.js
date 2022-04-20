@@ -15,6 +15,7 @@ export {
   AiFillHome as HomeIcon,
   AiOutlineLike as OutlinedLikeIcon,
   AiFillLike as LikeIcon,
+  AiOutlineClose as CloseIcon,
 } from "react-icons/ai";
 export { BiShare as ShareIcon } from "react-icons/bi";
 export { BsDot as DotIcon } from "react-icons/bs";

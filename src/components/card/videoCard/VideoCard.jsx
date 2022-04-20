@@ -2,9 +2,10 @@ import React from "react";
 import "./videoCard.css";
 import { MoreIcon } from "../../../assets";
 import { useNavigate } from "react-router-dom";
-import { useDropdown } from "../../../context";
+import { useAuth, useDropdown } from "../../../context";
 
 const VideoCard = ({ video }) => {
+  const { token } = useAuth();
   const { _id, title, isInWatchLater, isInLiked } = video;
   const navigate = useNavigate();
   const { showDropdown, toggleShowDropdownList, getDropdownList } =
@@ -40,10 +41,10 @@ const VideoCard = ({ video }) => {
                 key={_id}
                 tabIndex="0"
                 onClick={() => {
-                  onClickHandler(video._id, video);
+                  onClickHandler(video, token);
                 }}
                 onKeyDown={(event) => {
-                  if (event.key === "Enter") onClickHandler(video._id, video);
+                  if (event.key === "Enter") onClickHandler(video, token);
                 }}
               >
                 <Icon /> {option}
