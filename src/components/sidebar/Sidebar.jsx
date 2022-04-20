@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
+  ExploreIcon,
   HistoryIcon,
   HomeIcon,
   OutlinedLikeIcon,
@@ -10,27 +11,51 @@ import {
 import "./sidebar.css";
 
 const Sidebar = ({ showSidebar }) => {
+  const location = useLocation();
+  const path = location.pathname;
   return (
     <div className={`sidebar-container flex-column ${showSidebar}`}>
-      <Link to="/" className="sidebar-item">
-        <HomeIcon className="icon mr-1 sidebar-icon" size={24} />
-        <span>Home</span>
+      <Link
+        to="/"
+        className={`p-0p5 pr-1 m-1 mr-0 ${path === "/" ? "active" : ""}`}
+      >
+        <HomeIcon className="icon sidebar-icon" size={24} />
       </Link>
-      <Link to="/playlist" className="sidebar-item">
-        <PlaylistIcon className="icon mr-1 sidebar-icon" size={24} />
-        <span>Playlist</span>
+      <Link
+        to="/explore"
+        className={`p-0p5 pr-1 m-1 mr-0 ${path === "/explore" ? "active" : ""}`}
+      >
+        <ExploreIcon className="icon sidebar-icon" size={24} />
       </Link>
-      <Link to="/watchLater" className="sidebar-item">
-        <OutlinedWatchLaterIcon className="icon mr-1 sidebar-icon" size={24} />
-        <span>Watch Later</span>
+      <Link
+        to="/playlist"
+        className={`p-0p5 pr-1 m-1 mr-0 ${
+          path === "/playlist" ? "active" : ""
+        }`}
+      >
+        <PlaylistIcon className="icon sidebar-icon" size={24} />
       </Link>
-      <Link to="/likedVideos" className="sidebar-item">
-        <OutlinedLikeIcon className="icon mr-1 sidebar-icon" size={24} />
-        <span>Liked Videos</span>
+      <Link
+        to="/watchLater"
+        className={`p-0p5 pr-1 m-1 mr-0 ${
+          path === "/watchLater" ? "active" : ""
+        }`}
+      >
+        <OutlinedWatchLaterIcon className="icon sidebar-icon" size={24} />
       </Link>
-      <Link to="/history" className="sidebar-item">
-        <HistoryIcon className="icon mr-1 sidebar-icon" size={24} />
-        <span>History</span>
+      <Link
+        to="/likedVideos"
+        className={`p-0p5 pr-1 m-1 mr-0 ${
+          path === "/likedVideos" ? "active" : ""
+        }`}
+      >
+        <OutlinedLikeIcon className="icon sidebar-icon" size={24} />
+      </Link>
+      <Link
+        to="/history"
+        className={`p-0p5 pr-1 m-1 mr-0 ${path === "/history" ? "active" : ""}`}
+      >
+        <HistoryIcon className="icon sidebar-icon" size={24} />
       </Link>
     </div>
   );

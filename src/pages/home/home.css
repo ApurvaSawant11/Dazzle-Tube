@@ -1,17 +1,24 @@
 .category-chips {
-    background: var(--light-bg);
-    border: 1px solid var(--border-color);
-    border-left: 0;
-    border-right: 0;
-    padding-left: 1.5rem;
+    background: var(--overlay-85);
+    padding: 0.5rem;
     position: sticky;
     top: 4rem;
     z-index: 2;
 }
 
 .chip {
+    cursor: pointer;
     background: var(--hover-color);
     padding: 5px 10px;
     margin: 8px 12px 8px 0;
-    border-radius: 1rem;
+    min-width: 3rem;
+    text-align: center;
+}
+
+.chip:hover {
+    filter: brightness(1.2);
+}
+
+.chip.active{
+    background: var(--primary);
 }

@@ -9,12 +9,14 @@ export {
   MdHistory as HistoryIcon,
   MdMoreVert as MoreIcon,
   MdPlaylistAdd as PlaylistIcon,
+  MdOutlineExplore as ExploreIcon,
 } from "react-icons/md";
 export { GiHamburgerMenu as HambugerIcon } from "react-icons/gi";
 export {
   AiFillHome as HomeIcon,
   AiOutlineLike as OutlinedLikeIcon,
   AiFillLike as LikeIcon,
+  AiOutlineClose as CloseIcon,
 } from "react-icons/ai";
 export { BiShare as ShareIcon } from "react-icons/bi";
 export { BsDot as DotIcon } from "react-icons/bs";

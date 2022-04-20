@@ -7,7 +7,7 @@ const Home = () => {
   const { videos, categoryList } = useVideo();
   return (
     <div className="video-container">
-      <div className="category-chips flex-row">
+      <div className="category-chips flex-row-center">
         {categoryList &&
           categoryList.map(({ categoryName }, index) => (
             <div className="chip" key={index}>

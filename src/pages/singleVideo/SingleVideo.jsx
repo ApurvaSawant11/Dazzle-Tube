@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./singleVideo.css";
 import { useParams, useNavigate } from "react-router-dom";
-import { useAuth, useLike, useVideo } from "../../context";
-import { VideoCard } from "../../components";
+import { useAuth, useVideo } from "../../context";
+import { SaveModal, VideoCard } from "../../components";
+import { addToLikedVideos, removeFromLikedVideos } from "../../services";
 import {
   CommentIcon,
   DotIcon,
@@ -14,18 +15,18 @@ import {
 
 const SingleVideo = () => {
   const { token } = useAuth();
-  const { addToLikedVideos, removeFromLikedVideos } = useLike();
   const [showButtons, setShowButtons] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const { watchId } = useParams();
   const navigate = useNavigate();
-  const { videos } = useVideo();
+  const { videos, dispatch } = useVideo();
   const video = videos?.find((video) => video._id === watchId);
 
   const likeHandler = (video) => {
     if (token) {
       video.isInLiked
-        ? removeFromLikedVideos(video, token)
-        : addToLikedVideos(video, token);
+        ? removeFromLikedVideos(dispatch, video._id, token)
+        : addToLikedVideos(dispatch, video, token);
     } else {
       navigate("/login");
     }
@@ -33,18 +34,20 @@ const SingleVideo = () => {
 
   return (
     video && (
-      <div className="video-container flex-row p-1 gap-2">
+      <div className="video-container flex-row gap-2 p-1 container-width">
         <div className="play-video-container">
-          <iframe
-            className="play-container"
-            src={`https://www.youtube.com/embed/${watchId}`}
-            title={video.title}
-            width="100%"
-            height="50%"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen=""
-          />
+          <div className="play-container">
+            <iframe
+              className=""
+              src={`https://www.youtube.com/embed/${watchId}`}
+              title={video.title}
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen="1"
+            />
+          </div>
           <h5 className="">{video.title}</h5>
           <div className="action-container flex-row wrap gap-1 pb-1">
             <div className="flex-row-center">
@@ -69,7 +72,7 @@ const SingleVideo = () => {
                 <ShareIcon className="rotate-y-180" size={24} />
                 <span className="pl-0p5">Share</span>
               </div>
-              <div className="action-icon">
+              <div className="action-icon" onClick={() => setShowModal(true)}>
                 <PlaylistIcon size={24} />
                 <span className="pl-0p5">Save</span>
               </div>
@@ -129,13 +132,19 @@ const SingleVideo = () => {
             </div>
           </div>
         </div>
-
         <div className="">
           {videos &&
             videos
               .slice(0, 4)
               .map((video) => <VideoCard key={video._id} video={video} />)}
         </div>
+        {showModal && (
+          <SaveModal
+            video={video}
+            showModal={showModal}
+            setShowModal={setShowModal}
+          />
+        )}
       </div>
     )
   );

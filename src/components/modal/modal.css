@@ -1,0 +1,29 @@
+.modal-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: var(--overlay-70);
+    z-index: 3;
+}
+
+.modal {
+    width: 18rem;
+    min-width: 18rem;
+    max-width: 35rem;
+}
+
+.checkbox-field {
+    width: 1rem;
+    height: 1rem;
+    position: relative;
+    top: 0.15rem;
+}
+
+.modal-list-item {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

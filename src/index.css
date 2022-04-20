@@ -1,14 +1,16 @@
 @import url("https://cdn.jsdelivr.net/gh/ApurvaSawant11/Dazzle-UI-Components@development/components/components.min.css");
 
 :root {
-  --primary: #FA2742;
+  --primary: #ff1835;
   --secondary: #E8EAE3;
-  --theme-bg: #222222;
-  --light-bg:#2e2d2df7;
+  --theme-bg: #0f0f0f;
+  --light-bg:#1c1b1bf7;
   --hover-color: #525252cc;
   --theme-text-color: #E8EAE3;
   --shadow: #3c3c3c;
   --border-color: #525151;
+  --overlay-85:#0f0f0fd9;
+  --overlay-70:#0f0f0fbf;
 
 }
 

@@ -32,6 +32,17 @@ const sharedVideoReducer = (state, action) => {
           ),
         })),
       };
+
+    case "SET_WATCH_LATER":
+      return {
+        ...state,
+        videos: state.videos.map((video) => ({
+          ...video,
+          isInWatchLater: action.payload.some(
+            (element) => element._id === video._id
+          ),
+        })),
+      };
   }
 };
 

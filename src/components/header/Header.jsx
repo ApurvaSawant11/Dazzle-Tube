@@ -9,26 +9,16 @@ const Header = ({ showSidebar, setShowSidebar }) => {
   const { user, setUser, setToken } = useAuth();
   const location = useLocation();
 
-  const getSidebarClass = (windowWidth) => {
-    if (windowWidth > 1240) {
-      return "";
-    } else if (windowWidth <= 1240 && windowWidth > 760) {
-      return "collapsed";
-    } else if (windowWidth < 760) {
-      return "collapsed display-none";
-    }
-  };
-
   useEffect(() => {
     setShowSidebar(
-      location.pathname.includes("/watch")
-        ? "collapsed display-none"
-        : getSidebarClass(window.innerWidth)
+      location.pathname.includes("/watch/") || window.innerWidth < 760
+        ? "display-none"
+        : ""
     );
 
     const handleWindowResize = () => {
-      if (!location.pathname.includes("/watch")) {
-        setShowSidebar(getSidebarClass(window.innerWidth));
+      if (!location.pathname.includes("/watch/")) {
+        setShowSidebar(window.innerWidth < 760 ? "display-none" : "");
       }
     };
 
@@ -40,9 +30,7 @@ const Header = ({ showSidebar, setShowSidebar }) => {
 
   const sidebarHandler = () => {
     setShowSidebar(
-      showSidebar === "collapsed display-none"
-        ? "collapsed-absolute-small"
-        : "collapsed display-none"
+      showSidebar === "display-none" ? "small-screen-sidebar" : "display-none"
     );
   };
 
@@ -58,7 +46,7 @@ const Header = ({ showSidebar, setShowSidebar }) => {
       <div className="flex-row-center">
         <HambugerIcon
           className={`icon mr-1 ${
-            location.pathname.includes("/watch")
+            location.pathname.includes("/watch/")
               ? ""
               : window.innerWidth < 760
               ? ""
