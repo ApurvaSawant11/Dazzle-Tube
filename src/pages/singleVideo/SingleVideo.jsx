@@ -34,18 +34,20 @@ const SingleVideo = () => {
 
   return (
     video && (
-      <div className="video-container flex-row p-1 gap-2">
+      <div className="video-container flex-row gap-2 p-1 container-width">
         <div className="play-video-container">
-          <iframe
-            className="play-container"
-            src={`https://www.youtube.com/embed/${watchId}`}
-            title={video.title}
-            width="100%"
-            height="50%"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen=""
-          />
+          <div className="play-container">
+            <iframe
+              className=""
+              src={`https://www.youtube.com/embed/${watchId}`}
+              title={video.title}
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen="1"
+            />
+          </div>
           <h5 className="">{video.title}</h5>
           <div className="action-container flex-row wrap gap-1 pb-1">
             <div className="flex-row-center">

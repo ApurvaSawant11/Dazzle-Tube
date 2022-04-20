@@ -1,5 +1,5 @@
-.play-video-container {
-    width: 100%;
+.play-container {
+    aspect-ratio: 16/9;
 }
 
 .action-container {
@@ -29,4 +29,22 @@
 .size-xs {
     width: 2.25rem;
     height: 2.25rem;
+}
+
+.video-container.flex-row.container-width {
+    width: 90%;
+    margin: 1rem auto;
+    gap: 3rem;
+}
+
+@media screen and (max-width: 1240px) {
+    .video-container {
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .video-container.flex-row.container-width{
+        width: 100%;
+    }   
 }

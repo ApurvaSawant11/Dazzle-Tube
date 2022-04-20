@@ -2,6 +2,7 @@
     width: 18rem;
     cursor: pointer;
     margin-bottom: 1rem;
+    justify-self: center;
 }
 
 .card-img {

@@ -8,11 +8,7 @@ body {
 
 .video-container {
   width: 100%;
-  margin-left: 15rem;
-}
-
-.collapsed ~ .video-container {
-  margin-left: 5rem;
+  margin-left: 4.5rem;
 }
 
 .video-grid {

@@ -9,6 +9,7 @@ export {
   MdHistory as HistoryIcon,
   MdMoreVert as MoreIcon,
   MdPlaylistAdd as PlaylistIcon,
+  MdOutlineExplore as ExploreIcon,
 } from "react-icons/md";
 export { GiHamburgerMenu as HambugerIcon } from "react-icons/gi";
 export {

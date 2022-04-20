@@ -4,8 +4,7 @@
 }
 
 .search-input {
-    background: var(--theme-bg);
-    border: 1px solid var(--border-color);
+    background: var(--light-bg);
     color: var(--theme-text-color);
 }
 
