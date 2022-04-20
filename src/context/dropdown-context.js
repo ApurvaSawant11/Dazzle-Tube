@@ -45,7 +45,7 @@ const DropdownProvider = ({ children }) => {
         onClickHandler: (video, token) => {
           if (token) {
             if (isInWatchLater) {
-              removeFromWatchLater(dispatch, video, token);
+              removeFromWatchLater(dispatch, video._id, token);
             } else {
               addToWatchLater(dispatch, video, token);
             }
@@ -90,7 +90,7 @@ const DropdownProvider = ({ children }) => {
             onClickHandler: (video, token) => {
               if (token) {
                 if (isInLiked) {
-                  removeFromLikedVideos(dispatch, video, token);
+                  removeFromLikedVideos(dispatch, video._id, token);
                 } else {
                   addToLikedVideos(dispatch, video, token);
                 }

@@ -25,7 +25,7 @@ const SingleVideo = () => {
   const likeHandler = (video) => {
     if (token) {
       video.isInLiked
-        ? removeFromLikedVideos(dispatch, video, token)
+        ? removeFromLikedVideos(dispatch, video._id, token)
         : addToLikedVideos(dispatch, video, token);
     } else {
       navigate("/login");

@@ -22,11 +22,11 @@ const addToLikedVideos = async (dispatch, video, token) => {
   }
 };
 
-const removeFromLikedVideos = async (dispatch, video, token) => {
+const removeFromLikedVideos = async (dispatch, _id, token) => {
   try {
     const {
       data: { likes },
-    } = await axios.delete(`/api/user/likes/${video._id}`, {
+    } = await axios.delete(`/api/user/likes/${_id}`, {
       headers: {
         authorization: token,
       },

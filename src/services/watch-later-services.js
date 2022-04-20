@@ -19,11 +19,11 @@ const addToWatchLater = async (dispatch, video, token) => {
   }
 };
 
-const removeFromWatchLater = async (dispatch, video, token) => {
+const removeFromWatchLater = async (dispatch, _id, token) => {
   try {
     const {
       data: { watchlater },
-    } = await axios.delete(`/api/user/watchlater/${video._id}`, {
+    } = await axios.delete(`/api/user/watchlater/${_id}`, {
       headers: { authorization: token },
     });
 

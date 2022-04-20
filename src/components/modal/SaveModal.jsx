@@ -11,7 +11,7 @@ export const SaveModal = ({ video, showModal, setShowModal }) => {
     if (e.target.checked) {
       addToWatchLater(dispatch, video, token);
     } else {
-      removeFromWatchLater(dispatch, video, token);
+      removeFromWatchLater(dispatch, video._id, token);
     }
   };
 
