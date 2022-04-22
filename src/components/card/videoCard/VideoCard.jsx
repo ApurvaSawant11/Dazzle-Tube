@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./videoCard.css";
 import { MoreIcon } from "../../../assets";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth, useDropdown } from "../../../context";
 import { SaveModal } from "../../modal/SaveModal";
 
@@ -13,6 +13,7 @@ const VideoCard = ({ video }) => {
     useDropdown();
   const dropdownList = getDropdownList(isInWatchLater, isInLiked);
   const [showModal, setShowModal] = useState(false);
+  const location = useLocation();
 
   const onVideoClickHandler = () => {
     navigate(`/watch/${_id}`);
@@ -20,7 +21,9 @@ const VideoCard = ({ video }) => {
 
   const onListItemClick = (onClickHandler, option) => {
     option === "Save to Playlist"
-      ? setShowModal(true)
+      ? token
+        ? setShowModal(true)
+        : navigate("/login", { state: { from: location } }, { replace: true })
       : onClickHandler(video, token);
   };
   return (
