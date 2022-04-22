@@ -1,57 +1,59 @@
 import React, { useState } from "react";
-import "./videoCard.css";
-import { MoreIcon } from "../../../assets";
-import { useNavigate } from "react-router-dom";
+import { DragIcon, MoreIcon } from "../../../assets";
 import { useAuth, useDropdown } from "../../../context";
 import { SaveModal } from "../../modal/SaveModal";
+import { useParams, useNavigate } from "react-router-dom";
 
-const VideoCard = ({ video }) => {
+const PlaylistVideoCard = ({ video }) => {
   const { token } = useAuth();
   const { _id, title, isInWatchLater, isInLiked } = video;
-  const navigate = useNavigate();
   const { showDropdown, toggleShowDropdownList, getDropdownList } =
     useDropdown();
   const dropdownList = getDropdownList(isInWatchLater, isInLiked);
   const [showModal, setShowModal] = useState(false);
+  const { playlistId } = useParams();
+  const navigate = useNavigate();
 
   const onVideoClickHandler = () => {
     navigate(`/watch/${_id}`);
   };
 
-  const onListItemClick = (onClickHandler, option) => {
-    option === "Save to Playlist"
-      ? setShowModal(true)
-      : onClickHandler(video, token);
-  };
   return (
-    <div className="video-card">
-      <img
-        className="card-img"
-        src={`https://i.ytimg.com/vi/${_id}/0.jpg`}
+    <div className="list-card">
+      <DragIcon className="icon" size={28} />
+      <div
+        className="card-img-container align-self-center"
         onClick={onVideoClickHandler}
-        alt={title}
-      />
-      <div className="flex-row card-details">
-        <div className="card-title pr-0p5">{title}</div>
-        <span>
-          <MoreIcon
-            size={24}
-            onClick={(event) => {
-              toggleShowDropdownList(event, video._id);
-            }}
-          />
-        </span>
+      >
+        <img
+          className="list-card-img"
+          src={`https://i.ytimg.com/vi/${_id}/0.jpg`}
+          alt={title}
+        />
+      </div>
+      <div className="list-card-details" onClick={onVideoClickHandler}>
+        {title}
+      </div>
+      <div className="dropdown-icon">
+        <MoreIcon
+          size={24}
+          onClick={(event) => {
+            toggleShowDropdownList(event, video._id);
+          }}
+        />
 
         {showDropdown === _id && (
-          <ul tabIndex="0" className="card-dropdown">
+          <ul tabIndex="0" className="card-dropdown list-dropdown">
             {dropdownList.map(({ _id, option, onClickHandler, Icon }) => (
               <li
                 key={_id}
                 tabIndex="0"
-                onClick={() => onListItemClick(onClickHandler, option)}
+                onClick={() => {
+                  onClickHandler(playlistId, video._id, token);
+                }}
                 onKeyDown={(event) => {
                   if (event.key === "Enter")
-                    onListItemClick(onClickHandler, option);
+                    onClickHandler(playlistId, video._id, token);
                 }}
               >
                 <Icon /> {option}
@@ -72,4 +74,4 @@ const VideoCard = ({ video }) => {
   );
 };
 
-export { VideoCard };
+export { PlaylistVideoCard };

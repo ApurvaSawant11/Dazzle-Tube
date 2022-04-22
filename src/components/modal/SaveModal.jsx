@@ -1,17 +1,49 @@
-import { WatchLaterIcon, CloseIcon } from "../../assets";
+import { useState } from "react";
+import {
+  WatchLaterIcon,
+  CloseIcon,
+  PlusIcon,
+  NewPlaylistIcon,
+} from "../../assets";
 import { useVideo, useAuth } from "../../context";
-import { addToWatchLater, removeFromWatchLater } from "../../services";
+import {
+  addToPlaylist,
+  addToWatchLater,
+  createNewPlaylist,
+  removeFromPlaylist,
+  removeFromWatchLater,
+} from "../../services";
 import "./modal.css";
 
 export const SaveModal = ({ video, showModal, setShowModal }) => {
   const { token } = useAuth();
-  const { dispatch } = useVideo();
+  const { playlist, dispatch } = useVideo();
+  const [showNewPlaylistInput, setShowNewPlaylistInput] = useState(false);
+  const [playlistName, setPlaylistName] = useState("");
 
   const watchLaterHandler = (e) => {
     if (e.target.checked) {
       addToWatchLater(dispatch, video, token);
     } else {
       removeFromWatchLater(dispatch, video._id, token);
+    }
+  };
+
+  const createPlaylistHandler = () => {
+    if (playlistName !== "") {
+      createNewPlaylist(dispatch, playlistName, token);
+      setShowNewPlaylistInput(false);
+      setPlaylistName("");
+    } else {
+      console.error("Please enter valid playlist name");
+    }
+  };
+
+  const playlistHandler = (e, playlistID) => {
+    if (e.target.checked) {
+      addToPlaylist(dispatch, playlistID, video, token);
+    } else {
+      removeFromPlaylist(dispatch, playlistID, video._id, token);
     }
   };
 
@@ -24,9 +56,9 @@ export const SaveModal = ({ video, showModal, setShowModal }) => {
         onClick={(event) => {
           event.stopPropagation();
         }}
-        className="m-auto modal radius-0"
+        className="m-auto modal radius-0 border-1"
       >
-        <div className="flex-row-center content-between border-bottom-1 px-1 pt-1 pb-0p5">
+        <div className="flex-row-center content-between border-bottom-1 p-1">
           Save to...
           <button
             onClick={() => setShowModal(!showModal)}
@@ -52,7 +84,54 @@ export const SaveModal = ({ video, showModal, setShowModal }) => {
 
             <WatchLaterIcon size={18} />
           </li>
+
+          {playlist &&
+            playlist.map((list) => (
+              <li className="modal-list-item p-1 pt-0" key={list._id}>
+                <label className="">
+                  <input
+                    type="checkbox"
+                    name="watchLater"
+                    // checked={video.isInWatchLater}
+                    onChange={(e) => playlistHandler(e, list._id)}
+                    className="checkbox-field mr-0p5"
+                  />
+                  {list.title}
+                </label>
+
+                <NewPlaylistIcon size={16} />
+              </li>
+            ))}
         </ul>
+
+        <div className="border-top-1">
+          {!showNewPlaylistInput && (
+            <button
+              className="plain-button secondary-text text-center playlist-button"
+              onClick={() => setShowNewPlaylistInput(!showNewPlaylistInput)}
+            >
+              <PlusIcon /> Create new playlist
+            </button>
+          )}
+
+          {showNewPlaylistInput && (
+            <div className="flex-column mt-0p5">
+              <input
+                type="text"
+                placeholder="Enter playlist name..."
+                className="playlist-input px-0p5 m-1"
+                value={playlistName}
+                onChange={(e) => setPlaylistName(e.target.value)}
+              />
+              <button
+                className="plain-button primary-text text-right p-1 pt-0p5"
+                onClick={createPlaylistHandler}
+              >
+                Create
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

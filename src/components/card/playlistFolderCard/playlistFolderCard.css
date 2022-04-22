@@ -1,0 +1,43 @@
+.playlist-folder-card {
+    width: 18rem;
+    height: 10rem;
+    justify-self: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--theme-text-color);
+}
+
+.playlist-folder-card:hover > .card-title{
+    background: var(--light-bg);
+}
+
+.image-container, .empty-image {
+    width: 18rem;
+    height: 10rem;
+    position: relative;
+}
+
+.empty-image{
+    background: var(--hover-color);
+}
+
+.empty-playlist-icon {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    height: 100%;
+    width: 35%;
+    filter: brightness(0.8);
+}
+
+.count-overlay{
+    position: absolute;
+    background: var(--overlay-70);
+    height: 100%;
+    width: 40%;
+    top: 0;
+    right: 0;
+}

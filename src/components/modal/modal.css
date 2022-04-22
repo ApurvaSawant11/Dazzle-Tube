@@ -27,3 +27,21 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.playlist-button {
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 0.8rem;
+}
+
+.playlist-button:hover {
+    background: var(--light-bg);
+}
+
+.playlist-input {
+    background: transparent;
+    border: unset;
+    color: var(--theme-text-color);
+    outline: none;
+    border-bottom: 1px solid var(--white-color);
+}

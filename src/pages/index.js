@@ -5,3 +5,5 @@ export { Home } from "./home/Home";
 export { LikedVideos } from "./liked/LikedVideos";
 export { SingleVideo } from "./singleVideo/SingleVideo";
 export { WatchLater } from "./watchLater/WatchLater";
+export { Playlist } from "./playlist/Playlist";
+export { SinglePlaylist } from "./playlist/SinglePlaylist";

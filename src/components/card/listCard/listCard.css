@@ -25,3 +25,11 @@
 .list-dropdown {
     top: 4rem;
 }
+
+.card-img-container{
+    height: 6rem;
+}
+
+.align-self-center {
+    align-self: center;
+}

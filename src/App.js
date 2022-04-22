@@ -7,7 +7,9 @@ import {
   Home,
   LikedVideos,
   Login,
+  Playlist,
   Signup,
+  SinglePlaylist,
   SingleVideo,
   WatchLater,
 } from "./pages";
@@ -30,6 +32,8 @@ function App() {
           <Route element={<RequiresAuth />}>
             <Route path="/likedVideos" element={<LikedVideos />} />
             <Route path="/watchLater" element={<WatchLater />} />
+            <Route path="/playlist" element={<Playlist />} />
+            <Route path="/playlist/:playlistId" element={<SinglePlaylist />} />
           </Route>
           <Route path="/mockman" element={<Mockman />} />
         </Routes>
