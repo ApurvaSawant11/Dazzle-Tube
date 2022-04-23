@@ -2,13 +2,15 @@
     width: 18rem;
     height: 10rem;
     justify-self: center;
-    cursor: pointer;
     text-decoration: none;
-    color: var(--theme-text-color);
 }
 
-.playlist-folder-card:hover > .card-title{
+.playlist-card-details:hover{
     background: var(--light-bg);
+}
+
+.playlist-card-details:hover > .playlist-trash-icon{
+    display: block;
 }
 
 .image-container, .empty-image {
@@ -40,4 +42,9 @@
     width: 40%;
     top: 0;
     right: 0;
+}
+
+.card-link{
+    color: var(--theme-text-color);
+
 }

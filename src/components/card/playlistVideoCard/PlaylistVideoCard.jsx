@@ -20,11 +20,8 @@ const PlaylistVideoCard = ({ video }) => {
 
   return (
     <div className="list-card">
-      <DragIcon className="icon" size={28} />
-      <div
-        className="card-img-container align-self-center"
-        onClick={onVideoClickHandler}
-      >
+      <DragIcon className="icon align-self-center" size={28} />
+      <div className="card-img-container" onClick={onVideoClickHandler}>
         <img
           className="list-card-img"
           src={`https://i.ytimg.com/vi/${_id}/0.jpg`}

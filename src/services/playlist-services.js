@@ -18,7 +18,7 @@ const createNewPlaylist = async (dispatch, title, token) => {
     );
 
     dispatch({
-      type: "NEW_PLAYLIST",
+      type: "SET_PLAYLIST",
       payload: playlists,
     });
   } catch (error) {
@@ -26,7 +26,21 @@ const createNewPlaylist = async (dispatch, title, token) => {
   }
 };
 
-const deletePlaylist = () => {};
+const deletePlaylist = async (dispatch, _id, token) => {
+  try {
+    const {
+      data: { playlists },
+    } = await axios.delete(`/api/user/playlists/${_id}`, {
+      headers: { authorization: token },
+    });
+    dispatch({
+      type: "SET_PLAYLIST",
+      payload: playlists,
+    });
+  } catch (error) {
+    console.error("Error in deletePlaylist service:", error);
+  }
+};
 
 const addToPlaylist = async (dispatch, _id, video, token) => {
   try {

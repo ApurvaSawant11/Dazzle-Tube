@@ -44,7 +44,7 @@ const sharedVideoReducer = (state, action) => {
         })),
       };
 
-    case "NEW_PLAYLIST":
+    case "SET_PLAYLIST":
       return { ...state, playlist: action.payload };
 
     case "SET_PLAYLIST_VIDEOS":

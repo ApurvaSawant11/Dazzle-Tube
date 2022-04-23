@@ -9,10 +9,9 @@ const Playlist = () => {
       <h4 className="text-center">Playlists</h4>
 
       <div className="video-grid">
-        {playlist.length > 0 &&
-          playlist.map((list) => (
-            <PlaylistFolderCard key={list._id} list={list} />
-          ))}
+        {playlist?.map((list) => (
+          <PlaylistFolderCard key={list._id} list={list} />
+        ))}
       </div>
     </div>
   );

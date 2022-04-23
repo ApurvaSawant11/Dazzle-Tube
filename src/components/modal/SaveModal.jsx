@@ -92,7 +92,9 @@ export const SaveModal = ({ video, showModal, setShowModal }) => {
                   <input
                     type="checkbox"
                     name="watchLater"
-                    // checked={video.isInWatchLater}
+                    checked={list.videos.some(
+                      (listVideo) => listVideo._id === video._id
+                    )}
                     onChange={(e) => playlistHandler(e, list._id)}
                     className="checkbox-field mr-0p5"
                   />
