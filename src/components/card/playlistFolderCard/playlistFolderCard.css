@@ -3,13 +3,14 @@
     height: 10rem;
     justify-self: center;
     text-decoration: none;
+    
 }
 
-.playlist-card-details:hover{
+.playlist-folder-card:hover > .playlist-card-details{
     background: var(--light-bg);
 }
 
-.playlist-card-details:hover > .playlist-trash-icon{
+.playlist-folder-card:hover .playlist-trash-icon{
     display: block;
 }
 
