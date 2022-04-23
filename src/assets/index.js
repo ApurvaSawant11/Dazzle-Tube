@@ -10,6 +10,8 @@ export {
   MdMoreVert as MoreIcon,
   MdPlaylistAdd as PlaylistIcon,
   MdOutlineExplore as ExploreIcon,
+  MdPlaylistPlay as PlaylistPlayIcon,
+  MdOutlineDragIndicator as DragIcon,
 } from "react-icons/md";
 export { GiHamburgerMenu as HambugerIcon } from "react-icons/gi";
 export {
@@ -17,8 +19,14 @@ export {
   AiOutlineLike as OutlinedLikeIcon,
   AiFillLike as LikeIcon,
   AiOutlineClose as CloseIcon,
+  AiOutlinePlus as PlusIcon,
+  AiOutlineGithub as GithubIcon,
 } from "react-icons/ai";
 export { BiShare as ShareIcon } from "react-icons/bi";
-export { BsDot as DotIcon } from "react-icons/bs";
+export {
+  BsDot as DotIcon,
+  BsPlayCircle as NewPlaylistIcon,
+} from "react-icons/bs";
 export { IoMdList as CommentIcon } from "react-icons/io";
 export { FaRegTrashAlt as TrashIcon } from "react-icons/fa";
+export { ImPlay as EmptyPlaylisticon } from "react-icons/im";

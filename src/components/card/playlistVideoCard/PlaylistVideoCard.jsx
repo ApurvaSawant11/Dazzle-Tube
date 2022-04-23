@@ -1,31 +1,26 @@
 import React, { useState } from "react";
-import { MoreIcon } from "../../../assets";
-import "./listCard.css";
+import { DragIcon, MoreIcon } from "../../../assets";
 import { useAuth, useDropdown } from "../../../context";
 import { SaveModal } from "../../modal/SaveModal";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
-const ListCard = ({ video }) => {
+const PlaylistVideoCard = ({ video }) => {
   const { token } = useAuth();
   const { _id, title, isInWatchLater, isInLiked } = video;
   const { showDropdown, toggleShowDropdownList, getDropdownList } =
     useDropdown();
   const dropdownList = getDropdownList(isInWatchLater, isInLiked);
   const [showModal, setShowModal] = useState(false);
+  const { playlistId } = useParams();
   const navigate = useNavigate();
 
   const onVideoClickHandler = () => {
     navigate(`/watch/${_id}`);
   };
 
-  const onListItemClick = (onClickHandler, option) => {
-    option === "Save to Playlist"
-      ? setShowModal(true)
-      : onClickHandler(video, token);
-  };
-
   return (
     <div className="list-card">
+      <DragIcon className="icon align-self-center" size={28} />
       <div className="card-img-container" onClick={onVideoClickHandler}>
         <img
           className="list-card-img"
@@ -51,11 +46,11 @@ const ListCard = ({ video }) => {
                 key={_id}
                 tabIndex="0"
                 onClick={() => {
-                  onListItemClick(onClickHandler, option);
+                  onClickHandler(playlistId, video._id, token);
                 }}
                 onKeyDown={(event) => {
                   if (event.key === "Enter")
-                    onListItemClick(onClickHandler, option);
+                    onClickHandler(playlistId, video._id, token);
                 }}
               >
                 <Icon /> {option}
@@ -76,4 +71,4 @@ const ListCard = ({ video }) => {
   );
 };
 
-export { ListCard };
+export { PlaylistVideoCard };

@@ -43,6 +43,17 @@ const sharedVideoReducer = (state, action) => {
           ),
         })),
       };
+
+    case "SET_PLAYLIST":
+      return { ...state, playlist: action.payload };
+
+    case "SET_PLAYLIST_VIDEOS":
+      return {
+        ...state,
+        playlist: state.playlist.map((list) =>
+          list._id === action.payload._id ? action.payload : list
+        ),
+      };
   }
 };
 

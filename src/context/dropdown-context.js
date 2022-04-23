@@ -15,6 +15,7 @@ import {
   removeFromLikedVideos,
   addToWatchLater,
   removeFromWatchLater,
+  removeFromPlaylist,
 } from "../services";
 const DropdownContext = createContext();
 
@@ -36,6 +37,10 @@ const DropdownProvider = ({ children }) => {
     };
   }, [showDropdown]);
 
+  const navigateHandler = () => {
+    navigate("/login", { state: { from: location } }, { replace: true });
+  };
+
   const getDropdownList = (isInWatchLater, isInLiked) => {
     // Home page dropdownlist
     let dropdownList = [
@@ -50,7 +55,7 @@ const DropdownProvider = ({ children }) => {
               addToWatchLater(dispatch, video, token);
             }
           } else {
-            navigate("/login");
+            navigateHandler();
           }
         },
         Icon: () =>
@@ -79,33 +84,53 @@ const DropdownProvider = ({ children }) => {
           ]
         : dropdownList;
 
-    // dropdown for pages other than home and history
-    dropdownList = ["/", "/history"].includes(location.pathname)
-      ? dropdownList
-      : [
-          ...dropdownList,
+    // Playlist card dropdown
+    dropdownList = location.pathname.includes("/playlist")
+      ? [
           {
             _id: uuid(),
-            option: `${isInLiked ? "Remove from" : "Add to"} Liked`,
-            onClickHandler: (video, token) => {
+            option: "Remove from playlist",
+            onClickHandler: (playlistId, videoId, token) => {
               if (token) {
-                if (isInLiked) {
-                  removeFromLikedVideos(dispatch, video._id, token);
-                } else {
-                  addToLikedVideos(dispatch, video, token);
-                }
+                removeFromPlaylist(dispatch, playlistId, videoId, token);
               } else {
-                navigate("/login");
+                navigateHandler();
               }
             },
-            Icon: () =>
-              isInLiked ? (
-                <LikeIcon size={24} className="mr-0p5" />
-              ) : (
-                <OutlinedLikeIcon size={24} className="mr-0p5" />
-              ),
+            Icon: () => <TrashIcon size={16} className="mr-0p5" />,
           },
-        ];
+        ]
+      : dropdownList;
+
+    // dropdown for pages other than home, playlist, and, history
+    dropdownList =
+      ["/", "/history"].includes(location.pathname) ||
+      location.pathname.includes("/playlist")
+        ? dropdownList
+        : [
+            ...dropdownList,
+            {
+              _id: uuid(),
+              option: `${isInLiked ? "Remove from" : "Add to"} Liked`,
+              onClickHandler: (video, token) => {
+                if (token) {
+                  if (isInLiked) {
+                    removeFromLikedVideos(dispatch, video._id, token);
+                  } else {
+                    addToLikedVideos(dispatch, video, token);
+                  }
+                } else {
+                  navigateHandler();
+                }
+              },
+              Icon: () =>
+                isInLiked ? (
+                  <LikeIcon size={24} className="mr-0p5" />
+                ) : (
+                  <OutlinedLikeIcon size={24} className="mr-0p5" />
+                ),
+            },
+          ];
 
     return dropdownList;
   };

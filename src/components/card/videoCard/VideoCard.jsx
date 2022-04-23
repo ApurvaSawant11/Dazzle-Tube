@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./videoCard.css";
 import { MoreIcon } from "../../../assets";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth, useDropdown } from "../../../context";
+import { SaveModal } from "../../modal/SaveModal";
 
 const VideoCard = ({ video }) => {
   const { token } = useAuth();
@@ -11,9 +12,19 @@ const VideoCard = ({ video }) => {
   const { showDropdown, toggleShowDropdownList, getDropdownList } =
     useDropdown();
   const dropdownList = getDropdownList(isInWatchLater, isInLiked);
+  const [showModal, setShowModal] = useState(false);
+  const location = useLocation();
 
   const onVideoClickHandler = () => {
     navigate(`/watch/${_id}`);
+  };
+
+  const onListItemClick = (onClickHandler, option) => {
+    option === "Save to Playlist"
+      ? token
+        ? setShowModal(true)
+        : navigate("/login", { state: { from: location } }, { replace: true })
+      : onClickHandler(video, token);
   };
   return (
     <div className="video-card">
@@ -40,17 +51,24 @@ const VideoCard = ({ video }) => {
               <li
                 key={_id}
                 tabIndex="0"
-                onClick={() => {
-                  onClickHandler(video, token);
-                }}
+                onClick={() => onListItemClick(onClickHandler, option)}
                 onKeyDown={(event) => {
-                  if (event.key === "Enter") onClickHandler(video, token);
+                  if (event.key === "Enter")
+                    onListItemClick(onClickHandler, option);
                 }}
               >
                 <Icon /> {option}
               </li>
             ))}
           </ul>
+        )}
+
+        {showModal && (
+          <SaveModal
+            video={video}
+            showModal={showModal}
+            setShowModal={setShowModal}
+          />
         )}
       </div>
     </div>

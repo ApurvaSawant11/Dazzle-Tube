@@ -1,2 +1,8 @@
 export { addToLikedVideos, removeFromLikedVideos } from "./like-services";
 export { addToWatchLater, removeFromWatchLater } from "./watch-later-services";
+export {
+  createNewPlaylist,
+  deletePlaylist,
+  addToPlaylist,
+  removeFromPlaylist,
+} from "./playlist-services";

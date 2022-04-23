@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import "./singleVideo.css";
-import { useParams, useNavigate } from "react-router-dom";
+import {
+  useParams,
+  useNavigate,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import { useAuth, useVideo } from "../../context";
 import { SaveModal, VideoCard } from "../../components";
 import { addToLikedVideos, removeFromLikedVideos } from "../../services";
@@ -19,6 +24,7 @@ const SingleVideo = () => {
   const [showModal, setShowModal] = useState(false);
   const { watchId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const { videos, dispatch } = useVideo();
   const video = videos?.find((video) => video._id === watchId);
 
@@ -138,13 +144,16 @@ const SingleVideo = () => {
               .slice(0, 4)
               .map((video) => <VideoCard key={video._id} video={video} />)}
         </div>
-        {showModal && (
-          <SaveModal
-            video={video}
-            showModal={showModal}
-            setShowModal={setShowModal}
-          />
-        )}
+        {showModal &&
+          (token ? (
+            <SaveModal
+              video={video}
+              showModal={showModal}
+              setShowModal={setShowModal}
+            />
+          ) : (
+            <Navigate to="/login" state={{ from: location }} replace />
+          ))}
       </div>
     )
   );

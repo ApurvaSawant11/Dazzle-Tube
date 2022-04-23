@@ -3,7 +3,7 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../context";
 
 const RequiresAuth = () => {
-  const { location } = useLocation();
+  const location = useLocation();
   const { user } = useAuth();
   return user ? (
     <Outlet />

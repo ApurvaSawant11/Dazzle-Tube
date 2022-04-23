@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   ExploreIcon,
+  GithubIcon,
   HistoryIcon,
   HomeIcon,
   OutlinedLikeIcon,
@@ -30,10 +31,10 @@ const Sidebar = ({ showSidebar }) => {
       <Link
         to="/playlist"
         className={`p-0p5 pr-1 m-1 mr-0 ${
-          path === "/playlist" ? "active" : ""
+          path.includes("/playlist") ? "active" : ""
         }`}
       >
-        <PlaylistIcon className="icon sidebar-icon" size={24} />
+        <PlaylistIcon className="icon sidebar-icon" size={28} />
       </Link>
       <Link
         to="/watchLater"
