@@ -19,7 +19,7 @@ const VideoCard = ({ video }) => {
 
   const onVideoClickHandler = () => {
     navigate(`/watch/${_id}`);
-    !video.isInHistory && addToHistory(dispatch, video, token);
+    token && !video.isInHistory && addToHistory(dispatch, video, token);
   };
 
   const onListItemClick = (onClickHandler, option) => {

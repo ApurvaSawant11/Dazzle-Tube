@@ -45,7 +45,7 @@ const SingleVideo = () => {
         });
       }
     } else {
-      navigate("/login");
+      navigate("/login", { state: { from: location } }, { replace: true });
     }
   };
 
