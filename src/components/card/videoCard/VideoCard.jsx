@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import "./videoCard.css";
 import { MoreIcon } from "../../../assets";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth, useDropdown } from "../../../context";
+import { useAuth, useDropdown, useVideo } from "../../../context";
 import { SaveModal } from "../../modal/SaveModal";
+import { addToHistory } from "../../../services";
 
 const VideoCard = ({ video }) => {
   const { token } = useAuth();
+  const { dispatch } = useVideo();
   const { _id, title, isInWatchLater, isInLiked } = video;
   const navigate = useNavigate();
   const { showDropdown, toggleShowDropdownList, getDropdownList } =
@@ -17,6 +19,7 @@ const VideoCard = ({ video }) => {
 
   const onVideoClickHandler = () => {
     navigate(`/watch/${_id}`);
+    !video.isInHistory && addToHistory(dispatch, video, token);
   };
 
   const onListItemClick = (onClickHandler, option) => {

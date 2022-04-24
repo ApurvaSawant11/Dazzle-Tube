@@ -6,7 +6,7 @@ const Playlist = () => {
   const { playlist } = useVideo();
   return (
     <div className="video-container">
-      <h4 className="text-center">Playlists</h4>
+      <h5 className="text-center">Playlists</h5>
 
       <div className="video-grid">
         {playlist?.map((list) => (

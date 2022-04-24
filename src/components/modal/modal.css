@@ -45,3 +45,16 @@
     outline: none;
     border-bottom: 1px solid var(--white-color);
 }
+
+/* || confirm modal */
+
+.confirm-modal{
+    width: 30rem;
+    height: max-content;
+    background: var(--theme-bg);
+}
+
+.modal-action-buttons {
+    justify-content: flex-end;
+    padding: 0.8rem 1rem;
+}

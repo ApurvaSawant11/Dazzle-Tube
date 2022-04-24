@@ -6,3 +6,8 @@ export {
   addToPlaylist,
   removeFromPlaylist,
 } from "./playlist-services";
+export {
+  addToHistory,
+  removeFromHistory,
+  clearAllHistory,
+} from "./history-services";
