@@ -7,11 +7,20 @@ import {
 } from "../../../assets";
 import { deletePlaylist } from "../../../services/playlist-services";
 import "./playlistFolderCard.css";
-import { useAuth, useVideo } from "../../../context";
+import { useAuth, useVideo, useToast } from "../../../context";
 
 const PlaylistFolderCard = ({ list }) => {
   const { token } = useAuth();
   const { dispatch } = useVideo();
+  const { displayToast } = useToast();
+
+  const deletePlaylistHandler = () => {
+    deletePlaylist(dispatch, list._id, token);
+    displayToast({
+      toastType: "warning",
+      toastMessage: `Playlist ${list.title} deleted`,
+    });
+  };
   return (
     <div className="playlist-folder-card">
       <Link to={`/playlist/${list._id}`} className="card-link">
@@ -38,7 +47,7 @@ const PlaylistFolderCard = ({ list }) => {
         <TrashIcon
           size={20}
           className="playlist-trash-icon display-none icon"
-          onClick={() => deletePlaylist(dispatch, list._id, token)}
+          onClick={deletePlaylistHandler}
         />
       </div>
     </div>

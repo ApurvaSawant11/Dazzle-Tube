@@ -6,7 +6,7 @@ import {
   useLocation,
   Navigate,
 } from "react-router-dom";
-import { useAuth, useVideo } from "../../context";
+import { useAuth, useToast, useVideo } from "../../context";
 import { SaveModal, VideoCard } from "../../components";
 import { addToLikedVideos, removeFromLikedVideos } from "../../services";
 import {
@@ -20,6 +20,7 @@ import {
 
 const SingleVideo = () => {
   const { token } = useAuth();
+  const { displayToast } = useToast();
   const [showButtons, setShowButtons] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const { watchId } = useParams();
@@ -30,11 +31,21 @@ const SingleVideo = () => {
 
   const likeHandler = (video) => {
     if (token) {
-      video.isInLiked
-        ? removeFromLikedVideos(dispatch, video._id, token)
-        : addToLikedVideos(dispatch, video, token);
+      if (video.isInLiked) {
+        removeFromLikedVideos(dispatch, video._id, token);
+        displayToast({
+          toastType: "warning",
+          toastMessage: "Remove from Liked Videos",
+        });
+      } else {
+        addToLikedVideos(dispatch, video, token);
+        displayToast({
+          toastType: "success",
+          toastMessage: "Added to Liked Videos",
+        });
+      }
     } else {
-      navigate("/login");
+      navigate("/login", { state: { from: location } }, { replace: true });
     }
   };
 

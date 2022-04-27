@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { Header, RequiresAuth, Sidebar } from "./components";
 import {
   ForgotPassword,
+  History,
   Home,
   LikedVideos,
   Login,
@@ -34,6 +35,7 @@ function App() {
             <Route path="/watchLater" element={<WatchLater />} />
             <Route path="/playlist" element={<Playlist />} />
             <Route path="/playlist/:playlistId" element={<SinglePlaylist />} />
+            <Route path="/history" element={<History />} />
           </Route>
           <Route path="/mockman" element={<Mockman />} />
         </Routes>

@@ -5,7 +5,7 @@ import {
   PlusIcon,
   NewPlaylistIcon,
 } from "../../assets";
-import { useVideo, useAuth } from "../../context";
+import { useVideo, useAuth, useToast } from "../../context";
 import {
   addToPlaylist,
   addToWatchLater,
@@ -18,32 +18,53 @@ import "./modal.css";
 export const SaveModal = ({ video, showModal, setShowModal }) => {
   const { token } = useAuth();
   const { playlist, dispatch } = useVideo();
+  const { displayToast } = useToast();
   const [showNewPlaylistInput, setShowNewPlaylistInput] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
 
   const watchLaterHandler = (e) => {
     if (e.target.checked) {
       addToWatchLater(dispatch, video, token);
+      displayToast({
+        toastType: "success",
+        toastMessage: `Added to Watch Later`,
+      });
     } else {
       removeFromWatchLater(dispatch, video._id, token);
+      displayToast({
+        toastType: "warning",
+        toastMessage: `Removed from Watch Later`,
+      });
     }
   };
 
   const createPlaylistHandler = () => {
     if (playlistName !== "") {
       createNewPlaylist(dispatch, playlistName, token);
+      displayToast({
+        toastType: "success",
+        toastMessage: `Created playlist : ${playlistName}`,
+      });
       setShowNewPlaylistInput(false);
       setPlaylistName("");
     } else {
-      console.error("Please enter valid playlist name");
+      displayToast({
+        toastType: "error",
+        toastMessage: "Enter valid playlist name",
+      });
     }
   };
 
   const playlistHandler = (e, playlistID) => {
     if (e.target.checked) {
       addToPlaylist(dispatch, playlistID, video, token);
+      displayToast({ toastType: "success", toastMessage: "Added to playlist" });
     } else {
       removeFromPlaylist(dispatch, playlistID, video._id, token);
+      displayToast({
+        toastType: "warning",
+        toastMessage: "Removed from playlist",
+      });
     }
   };
 

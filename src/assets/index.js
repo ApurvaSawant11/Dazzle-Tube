@@ -12,6 +12,8 @@ export {
   MdOutlineExplore as ExploreIcon,
   MdPlaylistPlay as PlaylistPlayIcon,
   MdOutlineDragIndicator as DragIcon,
+  MdError as ErrorIcon,
+  MdWarning as WarningIcon,
 } from "react-icons/md";
 export { GiHamburgerMenu as HambugerIcon } from "react-icons/gi";
 export {
@@ -26,6 +28,8 @@ export { BiShare as ShareIcon } from "react-icons/bi";
 export {
   BsDot as DotIcon,
   BsPlayCircle as NewPlaylistIcon,
+  BsCheckCircleFill as SuccessIcon,
+  BsFillInfoCircleFill as InfoIcon,
 } from "react-icons/bs";
 export { IoMdList as CommentIcon } from "react-icons/io";
 export { FaRegTrashAlt as TrashIcon } from "react-icons/fa";

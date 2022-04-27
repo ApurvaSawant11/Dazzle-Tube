@@ -44,6 +44,17 @@ const sharedVideoReducer = (state, action) => {
         })),
       };
 
+    case "SET_HISTORY":
+      return {
+        ...state,
+        videos: state.videos.map((video) => ({
+          ...video,
+          isInHistory: action.payload.some(
+            (element) => element._id === video._id
+          ),
+        })),
+      };
+
     case "SET_PLAYLIST":
       return { ...state, playlist: action.payload };
 

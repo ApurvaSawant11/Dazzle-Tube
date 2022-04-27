@@ -1,0 +1,45 @@
+.toast-container {
+    background: var(--theme-bg);
+    box-shadow: 0 0 8px 0 var(--shadow);
+    position: fixed;
+    z-index: 3;
+    bottom: 2rem;
+    right: 2rem;
+    width: 18rem;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+.toast-close-icon {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+}
+
+.toast-bar {
+    background: var(--primary);
+    width: 100%;
+    height: 4px
+}
+
+@keyframes fadein {
+    from {
+      bottom: 0;
+      opacity: 0;
+    }
+    to {
+      bottom: 2rem;
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeout {
+    from {
+      bottom: 2rem;
+      opacity: 1;
+    }
+    to {
+      bottom: 0;
+      opacity: 0;
+    }
+  }
+  

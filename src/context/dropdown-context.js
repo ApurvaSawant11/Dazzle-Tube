@@ -9,13 +9,14 @@ import {
   LikeIcon,
   OutlinedLikeIcon,
 } from "../assets";
-import { useVideo } from "./video-context";
+import { useVideo, useToast } from "../context";
 import {
   addToLikedVideos,
   removeFromLikedVideos,
   addToWatchLater,
   removeFromWatchLater,
   removeFromPlaylist,
+  removeFromHistory,
 } from "../services";
 const DropdownContext = createContext();
 
@@ -24,6 +25,7 @@ const DropdownProvider = ({ children }) => {
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState("");
   const { dispatch } = useVideo();
+  const { displayToast } = useToast();
 
   useEffect(() => {
     const handleDocumentClick = () => {
@@ -41,6 +43,18 @@ const DropdownProvider = ({ children }) => {
     navigate("/login", { state: { from: location } }, { replace: true });
   };
 
+  const handleToast = (action, list) => {
+    action === "remove"
+      ? displayToast({
+          toastType: "warning",
+          toastMessage: `Removed from ${list}`,
+        })
+      : displayToast({
+          toastType: "success",
+          toastMessage: `Added to ${list}`,
+        });
+  };
+
   const getDropdownList = (isInWatchLater, isInLiked) => {
     // Home page dropdownlist
     let dropdownList = [
@@ -51,8 +65,10 @@ const DropdownProvider = ({ children }) => {
           if (token) {
             if (isInWatchLater) {
               removeFromWatchLater(dispatch, video._id, token);
+              handleToast("remove", "Watch Later");
             } else {
               addToWatchLater(dispatch, video, token);
+              handleToast("add", "Watch Later");
             }
           } else {
             navigateHandler();
@@ -79,7 +95,11 @@ const DropdownProvider = ({ children }) => {
             {
               _id: uuid(),
               option: "Remove from History",
-              Icon: () => <TrashIcon size={24} className="mr-0p5" />,
+              onClickHandler: (video, token) => {
+                removeFromHistory(dispatch, video._id, token);
+                handleToast("remove", "History");
+              },
+              Icon: () => <TrashIcon size={16} className="mr-0p5" />,
             },
           ]
         : dropdownList;
@@ -93,6 +113,7 @@ const DropdownProvider = ({ children }) => {
             onClickHandler: (playlistId, videoId, token) => {
               if (token) {
                 removeFromPlaylist(dispatch, playlistId, videoId, token);
+                handleToast("remove", "playlist");
               } else {
                 navigateHandler();
               }
@@ -116,8 +137,10 @@ const DropdownProvider = ({ children }) => {
                 if (token) {
                   if (isInLiked) {
                     removeFromLikedVideos(dispatch, video._id, token);
+                    handleToast("remove", "Liked Videos");
                   } else {
                     addToLikedVideos(dispatch, video, token);
+                    handleToast("add", "Liked Videos");
                   }
                 } else {
                   navigateHandler();
