@@ -59,3 +59,11 @@ body {
 .light-hover:hover {
   background: var(--light-hover-color);
 }
+
+.border-top-3 {
+  border-top: 3px solid var(--border-color);
+}
+
+.border-bottom-3 {
+  border-bottom: 3px solid var(--border-color);
+}

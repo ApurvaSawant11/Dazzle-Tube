@@ -1,8 +1,21 @@
+import { v4 as uuid } from "uuid";
+
 const initialVideoState = {
   videos: [],
   playlist: [],
   categoryList: [],
 };
+
+const dummyNotes = [
+  {
+    _id: uuid(),
+    note: "This is a dummy note. Now you can takes notes specific to the video",
+  },
+  {
+    _id: uuid(),
+    note: "You can add multiple notes and edit them any time you want.",
+  },
+];
 
 const sharedVideoReducer = (state, action) => {
   switch (action.type) {
@@ -15,6 +28,7 @@ const sharedVideoReducer = (state, action) => {
             isInWatchLater: false,
             isInLiked: false,
             isInHistory: false,
+            notes: dummyNotes,
           })),
         ],
       };
@@ -65,6 +79,45 @@ const sharedVideoReducer = (state, action) => {
           list._id === action.payload._id ? action.payload : list
         ),
       };
+
+    case "SET_COMMENT":
+      const { watchId: videoId, commentDetails } = action.payload;
+      return {
+        ...state,
+        videos: [
+          ...state.videos.map((video) =>
+            video._id === videoId
+              ? {
+                  ...video,
+                  comments: [commentDetails, ...(video.comments ?? [])],
+                }
+              : { ...video }
+          ),
+        ],
+      };
+
+    case "ADD_NOTES":
+      const { watchId, noteDetails } = action.payload;
+      return {
+        ...state,
+        videos: [
+          ...state.videos.map((video) =>
+            video._id === watchId
+              ? {
+                  ...video,
+                  notes: [...(video.notes ?? []), noteDetails],
+                }
+              : { ...video }
+          ),
+        ],
+      };
+
+    case "SET_NOTES":
+      return {
+        ...state,
+        videos: action.payload,
+      };
+      break;
   }
 };
 

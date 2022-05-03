@@ -21,9 +21,8 @@
     max-width: 100%;
 }
 
-.comment{
-    align-self: center;
-    margin-left: 1rem;
+.input-comment  .avatar {
+    flex-shrink: 0;
 }
 
 .size-xs {
@@ -31,20 +30,20 @@
     height: 2.25rem;
 }
 
-.video-container.flex-row.container-width {
+.video-container.flex-column.container-width {
     width: 90%;
     margin: 1rem auto;
     gap: 3rem;
 }
 
 @media screen and (max-width: 1240px) {
-    .video-container {
+    .play-video-container {
         flex-wrap: wrap;
     }
 }
 
 @media screen and (max-width: 1024px) {
-    .video-container.flex-row.container-width{
+    .video-container.flex-column.container-width{
         width: 100%;
     }   
 }
