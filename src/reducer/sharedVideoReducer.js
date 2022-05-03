@@ -117,7 +117,6 @@ const sharedVideoReducer = (state, action) => {
         ...state,
         videos: action.payload,
       };
-      break;
   }
 };
 

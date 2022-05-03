@@ -126,7 +126,7 @@ const SingleVideo = () => {
           </div>
 
           {/* Adding notes to video */}
-          <Note video={video} />
+          <Note video={video} token={token} />
         </div>
 
         <div className="border-top-3 pt-1p5">
@@ -140,7 +140,15 @@ const SingleVideo = () => {
                 {!showCommentInput && (
                   <button
                     className="button secondary radius-0"
-                    onClick={() => setShowCommentInput(true)}
+                    onClick={() =>
+                      token
+                        ? setShowCommentInput(true)
+                        : navigate(
+                            "/login",
+                            { state: { from: location } },
+                            { replace: true }
+                          )
+                    }
                   >
                     Add Comment
                   </button>

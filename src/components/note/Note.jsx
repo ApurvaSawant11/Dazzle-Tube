@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import "./note.css";
 import { useVideo, useToast } from "../../context";
 import { TrashIcon, EditIcon } from "../../assets";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 
-const Note = ({ video }) => {
+const Note = ({ video, token }) => {
   const { videos, dispatch } = useVideo();
   const [newNote, setNewNote] = useState("");
   const [isEditNote, setIsEditNote] = useState({ status: false, noteId: null });
   const { watchId } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
   const { displayToast } = useToast();
   const addNoteHandler = () => {
     if (newNote.trim() !== "") {
@@ -75,6 +77,10 @@ const Note = ({ video }) => {
           required
           value={newNote}
           onChange={(e) => setNewNote(e.target.value)}
+          onClick={() =>
+            !token &&
+            navigate("/login", { state: { from: location } }, { replace: true })
+          }
         />
         {isEditNote.status ? (
           <button
