@@ -11,8 +11,21 @@ import { Response } from "miragejs";
  * */
 
 export const getAllVideosHandler = function () {
+  const videosList = this.db.videos;
+  const videos = videosList.map((video) => ({
+    ...video,
+    comments: [
+      {
+        firstName: "Hanna",
+        lastName: "Montini",
+        comment:
+          "I don't know why but this video is one of the greatest most calming things I've ever watched. Thank you 😄",
+        color: "#ff1835",
+      },
+    ],
+  }));
   try {
-    return new Response(200, {}, { videos: this.db.videos });
+    return new Response(200, {}, { videos });
   } catch (error) {
     return new Response(
       500,

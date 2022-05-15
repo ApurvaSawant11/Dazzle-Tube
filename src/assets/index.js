@@ -20,6 +20,7 @@ export {
   AiFillHome as HomeIcon,
   AiOutlineLike as OutlinedLikeIcon,
   AiFillLike as LikeIcon,
+  AiOutlineEdit as EditIcon,
   AiOutlineClose as CloseIcon,
   AiOutlinePlus as PlusIcon,
   AiOutlineGithub as GithubIcon,
