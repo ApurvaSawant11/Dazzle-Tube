@@ -41,8 +41,8 @@ const Signup = () => {
 
   return (
     <section className="auth-container">
-      <form className="signup-form p-2p5" onSubmit={signupHandler}>
-        <h4 className="text-center py-1">Signup</h4>
+      <form className="signup-form p-2p5 pt-0" onSubmit={signupHandler}>
+        <h4 className="text-center pt-1">Signup</h4>
         <div className="flex-row form-name">
           <div className="input-field mb-2">
             <input

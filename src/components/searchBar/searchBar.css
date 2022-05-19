@@ -1,6 +1,6 @@
 .search-container {
     position: relative;
-    width: 40%;
+    /* width: 40%; */
 }
 
 .search-input {
@@ -12,3 +12,9 @@
     position: absolute;
     left: 1rem;
 }
+
+/* @media screen and (max-width: 860px) {
+    .search-container{
+        width:100%
+    }
+} */

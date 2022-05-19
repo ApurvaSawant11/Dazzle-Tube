@@ -25,7 +25,7 @@ export {
   AiOutlinePlus as PlusIcon,
   AiOutlineGithub as GithubIcon,
 } from "react-icons/ai";
-export { BiShare as ShareIcon } from "react-icons/bi";
+export { BiShare as ShareIcon, BiSortDown as SortIcon } from "react-icons/bi";
 export {
   BsDot as DotIcon,
   BsPlayCircle as NewPlaylistIcon,
@@ -33,5 +33,9 @@ export {
   BsFillInfoCircleFill as InfoIcon,
 } from "react-icons/bs";
 export { IoMdList as CommentIcon } from "react-icons/io";
-export { FaRegTrashAlt as TrashIcon } from "react-icons/fa";
+export {
+  FaRegTrashAlt as TrashIcon,
+  FaMoon as MoonIcon,
+  FaSun as SunIcon,
+} from "react-icons/fa";
 export { ImPlay as EmptyPlaylisticon } from "react-icons/im";

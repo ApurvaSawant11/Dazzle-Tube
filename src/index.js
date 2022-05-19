@@ -9,6 +9,7 @@ import {
   VideoProvider,
   DropdownProvider,
   ToastProvider,
+  ThemeProvider,
 } from "./context";
 
 // Call make Server
@@ -19,15 +20,17 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Router>
-      <VideoProvider>
-        <ToastProvider>
-          <AuthProvider>
-            <DropdownProvider>
-              <App />
-            </DropdownProvider>
-          </AuthProvider>
-        </ToastProvider>
-      </VideoProvider>
+      <ThemeProvider>
+        <VideoProvider>
+          <ToastProvider>
+            <AuthProvider>
+              <DropdownProvider>
+                <App />
+              </DropdownProvider>
+            </AuthProvider>
+          </ToastProvider>
+        </VideoProvider>
+      </ThemeProvider>
     </Router>
   </React.StrictMode>
 );

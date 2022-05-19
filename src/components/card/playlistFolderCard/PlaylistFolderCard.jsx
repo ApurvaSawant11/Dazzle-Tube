@@ -38,7 +38,7 @@ const PlaylistFolderCard = ({ list }) => {
           )}
           <div className="count-overlay flex-column-center">
             <span className="pr-0p5">{list.videos.length}</span>
-            <PlaylistPlayIcon size={36} />
+            <PlaylistPlayIcon className="icon" size={36} />
           </div>
         </div>
       </Link>

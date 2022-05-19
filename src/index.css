@@ -1,6 +1,6 @@
 @import url("https://cdn.jsdelivr.net/gh/ApurvaSawant11/Dazzle-UI-Components@development/components/components.min.css");
 
-:root {
+[data-theme='night'] {
   --primary: #ff1835;
   --secondary: #E8EAE3;
   --theme-bg: #0f0f0f;
@@ -8,10 +8,27 @@
   --hover-color: #525252cc;
   --light-hover-color:#262626db;
   --theme-text-color: #E8EAE3;
+  --header-bg:#0f0f0f;
   --shadow: #2c2c2c;
   --border-color: #525151;
   --overlay-85:#0f0f0fd9;
   --overlay-70:#0f0f0fbf;
+  --font-weight:500;
 
 }
 
+[data-theme='light'] {
+  --primary: #ff233f;
+  --secondary: #161616;
+  --theme-bg: #f8f8f8;
+  --light-bg: #e0e0e0f7;
+  --hover-color: #8e8e8ecc;
+  --light-hover-color: #262626db;
+  --theme-text-color: #161616;
+  --header-bg: #bbbbbb;
+  --shadow: #8c8c8c;
+  --border-color: #525151;
+  --overlay-85: #e2e2e2d9;
+  --overlay-70: #595959bf;
+  --font-weight: 600;
+}

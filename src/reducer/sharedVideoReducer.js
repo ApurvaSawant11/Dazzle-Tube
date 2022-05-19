@@ -4,6 +4,9 @@ const initialVideoState = {
   videos: [],
   playlist: [],
   categoryList: [],
+  search: "",
+  sortByCategory: "",
+  sortByDate: false,
 };
 
 const dummyNotes = [
@@ -116,6 +119,24 @@ const sharedVideoReducer = (state, action) => {
       return {
         ...state,
         videos: action.payload,
+      };
+
+    case "SORT_BY_CATEGORY":
+      return {
+        ...state,
+        sortByCategory: action.payload,
+      };
+
+    case "SORT_BY_DATE":
+      return {
+        ...state,
+        sortByDate: !state.sortByDate,
+      };
+
+    case "SEARCH":
+      return {
+        ...state,
+        search: action.payload,
       };
   }
 };
