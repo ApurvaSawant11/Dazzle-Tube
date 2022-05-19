@@ -6,7 +6,10 @@ const ThemeContext = createContext();
 const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState("night");
 
-  useEffect(() => setTheme(localStorage.getItem("DazzleTube Theme")), []);
+  useEffect(
+    () => setTheme(localStorage.getItem("DazzleTube Theme") ?? "night"),
+    []
+  );
 
   const changeTheme = () => {
     localStorage.setItem(
