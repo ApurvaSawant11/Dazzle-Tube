@@ -9,6 +9,7 @@
 .chip {
     cursor: pointer;
     background: var(--hover-color);
+    color: var(--theme-text-color);
     padding: 5px 10px;
     margin: 8px 12px 8px 0;
     min-width: 3rem;
@@ -21,4 +22,10 @@
 
 .chip.active{
     background: var(--primary);
+}
+
+@media screen and (max-width: 520px) {
+    .category-chips{
+        top: 7.6rem;
+    }
 }

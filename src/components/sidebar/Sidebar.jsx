@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
-  ExploreIcon,
   GithubIcon,
   HistoryIcon,
   HomeIcon,
@@ -21,12 +20,6 @@ const Sidebar = ({ showSidebar }) => {
         className={`p-0p5 pr-1 m-1 mr-0 ${path === "/" ? "active" : ""}`}
       >
         <HomeIcon className="icon sidebar-icon" size={24} />
-      </Link>
-      <Link
-        to="/explore"
-        className={`p-0p5 pr-1 m-1 mr-0 ${path === "/explore" ? "active" : ""}`}
-      >
-        <ExploreIcon className="icon sidebar-icon" size={24} />
       </Link>
       <Link
         to="/playlist"
@@ -58,6 +51,14 @@ const Sidebar = ({ showSidebar }) => {
       >
         <HistoryIcon className="icon sidebar-icon" size={24} />
       </Link>
+      <a
+        href="https://github.com/ApurvaSawant11"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`p-0p5 pr-1 m-1 mr-0`}
+      >
+        <GithubIcon className="icon sidebar-icon" size={24} />
+      </a>
     </div>
   );
 };

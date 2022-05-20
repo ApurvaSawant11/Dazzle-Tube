@@ -8,7 +8,7 @@
 }
 
 .login-form, .signup-form {
-    width: 25rem;
+    width: min(90vw, 25rem);
     align-self: center;
 }
 
@@ -17,6 +17,7 @@
     justify-content: space-between;
     white-space: nowrap;
     gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .authbox-container label {
@@ -32,8 +33,15 @@
 .input {
     background: transparent;
     color: var(--theme-text-color);
+    font-weight: var(--font-weight);
 }
 
 .forgot-form {
     width: 28rem;
+}
+
+@media screen and (max-width:420px) {
+    .login-form, .signup-form{
+        padding: 0 2rem 2rem
+    }
 }

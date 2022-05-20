@@ -43,7 +43,7 @@
     border: unset;
     color: var(--theme-text-color);
     outline: none;
-    border-bottom: 1px solid var(--white-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
 /* || confirm modal */

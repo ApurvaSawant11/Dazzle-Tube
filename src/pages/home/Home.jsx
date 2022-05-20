@@ -2,22 +2,39 @@ import React from "react";
 import "./home.css";
 import { useVideo } from "../../context";
 import { VideoCard } from "../../components";
+import { searchVideos, sortVideos, sortVideosByDate } from "../../services";
 
 const Home = () => {
-  const { videos, categoryList } = useVideo();
+  const { videos, categoryList, search, sortByCategory, sortByDate, dispatch } =
+    useVideo();
+
+  const searchedByName = searchVideos([...videos], search);
+  const sortedByCategory = sortVideos(searchedByName, sortByCategory);
+  const sortedByDate = sortVideosByDate(sortedByCategory, sortByDate);
+
   return (
     <div className="video-container">
       <div className="category-chips flex-row-center">
         {categoryList &&
           categoryList.map(({ categoryName }, index) => (
-            <div className="chip" key={index}>
+            <div
+              className={`chip ${
+                sortByCategory === categoryName ? "active" : ""
+              }`}
+              key={index}
+              onClick={() =>
+                dispatch({ type: "SORT_BY_CATEGORY", payload: categoryName })
+              }
+            >
               {categoryName}
             </div>
           ))}
       </div>
       <div className="video-grid">
         {videos &&
-          videos.map((video) => <VideoCard key={video._id} video={video} />)}
+          sortedByDate.map((video) => (
+            <VideoCard key={video._id} video={video} />
+          ))}
       </div>
     </div>
   );

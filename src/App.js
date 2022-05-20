@@ -14,13 +14,16 @@ import {
   SingleVideo,
   WatchLater,
 } from "./pages";
+import { useTheme } from "./context";
 // mockman-js
 import Mockman from "mockman-js";
 
 function App() {
   const [showSidebar, setShowSidebar] = useState("");
+  const { theme } = useTheme();
+
   return (
-    <div className="App">
+    <div className="App" data-theme={theme}>
       <Header showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
       <div className="flex-row">
         <Sidebar showSidebar={showSidebar} />

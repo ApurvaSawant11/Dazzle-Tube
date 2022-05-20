@@ -1,14 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
 
-body {
+.App {
   background: var(--theme-bg);
   color: var(--theme-text-color);
   font-family: 'Source Sans Pro', sans-serif;
+  font-weight: var(--font-weight);
+  min-height: 100vh;
 }
 
 .video-container {
   width: 100%;
-  margin-left: 4.5rem;
+  margin-left: 4.3rem;
 }
 
 .video-grid {

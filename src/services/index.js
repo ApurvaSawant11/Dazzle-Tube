@@ -11,3 +11,4 @@ export {
   removeFromHistory,
   clearAllHistory,
 } from "./history-services";
+export { sortVideos, searchVideos, sortVideosByDate } from "./getSortedVideos";

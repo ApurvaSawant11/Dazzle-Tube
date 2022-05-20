@@ -23,7 +23,7 @@ const Login = () => {
   return (
     <section className="auth-container">
       <form className="login-form p-2p5 pt-0" onSubmit={loginHandler}>
-        <h4 className="text-center py-1">Login</h4>
+        <h4 className="text-center pt-1">Login</h4>
         <div className="input-field mb-2">
           <input
             className="input"

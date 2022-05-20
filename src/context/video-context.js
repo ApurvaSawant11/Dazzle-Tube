@@ -46,6 +46,9 @@ const VideoProvider = ({ children }) => {
     videos: state.videos,
     categoryList: state.categoryList,
     playlist: state.playlist,
+    search: state.search,
+    sortByCategory: state.sortByCategory,
+    sortByDate: state.sortByDate,
     dispatch,
   };
   return (
