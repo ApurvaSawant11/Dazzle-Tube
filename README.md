@@ -43,6 +43,7 @@
   - Signup
   - Login
 - Fully Responsive
+- Dark and Light Theme
 
 ## **Built with -**
 
