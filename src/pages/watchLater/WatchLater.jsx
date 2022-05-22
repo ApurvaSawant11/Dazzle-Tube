@@ -2,8 +2,11 @@ import React from "react";
 import { ListCard } from "../../components";
 import { useVideo } from "../../context";
 import "./watchLater.css";
+import { useDocumentTitle, useScrollToTop } from "../../hooks";
 
 const WatchLater = () => {
+  useScrollToTop();
+  useDocumentTitle("Watch Later");
   const { videos } = useVideo();
 
   return (

@@ -1,8 +1,10 @@
 import React from "react";
 import { PlaylistFolderCard } from "../../components";
 import { useVideo } from "../../context";
+import { useDocumentTitle } from "../../hooks";
 
 const Playlist = () => {
+  useDocumentTitle("Playlists");
   const { playlist } = useVideo();
   return (
     <div className="video-container">

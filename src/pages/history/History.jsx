@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import { ConfirmModal, VideoCard } from "../../components";
 import { useAuth, useVideo } from "../../context";
 import { clearAllHistory } from "../../services";
+import { useDocumentTitle, useScrollToTop } from "../../hooks";
 
 const History = () => {
+  useScrollToTop();
+  useDocumentTitle("History");
   const { token } = useAuth();
   const { videos, dispatch } = useVideo();
   const [showConfirmModal, setShowConfirmModal] = useState({

@@ -1,8 +1,11 @@
 import React from "react";
 import { ListCard } from "../../components";
 import { useVideo } from "../../context";
+import { useDocumentTitle, useScrollToTop } from "../../hooks";
 
 const LikedVideos = () => {
+  useScrollToTop();
+  useDocumentTitle("Liked Videos");
   const { videos } = useVideo();
   return (
     <div className="video-container">
