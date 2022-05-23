@@ -4,6 +4,7 @@ import { useVideo, useToast } from "../../context";
 import { TrashIcon, EditIcon } from "../../assets";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { v4 as uuid } from "uuid";
+import { NoteModal } from "../modal/NoteModal";
 
 const Note = ({ video, token }) => {
   const { videos, dispatch } = useVideo();
@@ -13,6 +14,11 @@ const Note = ({ video, token }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { displayToast } = useToast();
+  const [showNoteModal, setShowNoteModal] = useState({
+    status: false,
+    noteText: "",
+  });
+
   const addNoteHandler = () => {
     if (newNote.trim() !== "") {
       const noteDetails = {
@@ -83,12 +89,23 @@ const Note = ({ video, token }) => {
           }
         />
         {isEditNote.status ? (
-          <button
-            className="button primary width-100 radius-0 add-note-btn my-1"
-            onClick={editNoteHandler}
-          >
-            Edit Note
-          </button>
+          <div className="flex-row-center gap-0p5">
+            <button
+              className="button primary width-100 radius-0 add-note-btn my-1"
+              onClick={editNoteHandler}
+            >
+              Edit Note
+            </button>
+            <button
+              className="button secondary width-100 radius-0 add-note-btn my-1"
+              onClick={() => {
+                setNewNote("");
+                setIsEditNote({ status: false, noteId: "" });
+              }}
+            >
+              Cancel
+            </button>
+          </div>
         ) : (
           <button
             className="button primary width-100 radius-0 add-note-btn my-1"
@@ -121,10 +138,21 @@ const Note = ({ video, token }) => {
                 <TrashIcon onClick={() => deleteNoteHandler(_id)} />
               </span>
             </div>
-            <div className="note">{note}</div>
+            <div
+              className="note cursor-pointer"
+              onClick={() => setShowNoteModal({ status: true, noteText: note })}
+            >
+              {note}
+            </div>
           </div>
         ))}
       </div>
+      {showNoteModal.status && (
+        <NoteModal
+          showNoteModal={showNoteModal}
+          setShowNoteModal={setShowNoteModal}
+        />
+      )}
     </div>
   );
 };

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context";
+import { useDocumentTitle } from "../../hooks";
 
 const Signup = () => {
+  useDocumentTitle("SIgnup");
   const { signup, token } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();

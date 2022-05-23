@@ -10,3 +10,4 @@ export { PlaylistFolderCard } from "./card/playlistFolderCard/PlaylistFolderCard
 export { PlaylistVideoCard } from "./card/playlistVideoCard/PlaylistVideoCard";
 export { Toast } from "./toast/Toast";
 export { Note } from "./note/Note";
+export { NoteModal } from "./modal/NoteModal";

@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./auth.css";
 import { useAuth } from "../../context";
+import { useDocumentTitle } from "../../hooks";
 
 const Login = () => {
+  useDocumentTitle("Login");
   const { login, token } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
