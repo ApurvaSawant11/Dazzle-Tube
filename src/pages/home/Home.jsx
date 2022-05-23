@@ -3,8 +3,10 @@ import "./home.css";
 import { useVideo } from "../../context";
 import { VideoCard } from "../../components";
 import { searchVideos, sortVideos, sortVideosByDate } from "../../services";
+import { useDocumentTitle } from "../../hooks";
 
 const Home = () => {
+  useDocumentTitle("Home");
   const { videos, categoryList, search, sortByCategory, sortByDate, dispatch } =
     useVideo();
 

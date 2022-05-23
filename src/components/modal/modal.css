@@ -54,6 +54,18 @@
     background: var(--theme-bg);
 }
 
+.justify-between {
+    justify-content: space-between;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.whitespace-prewrap{
+    white-space: pre-wrap;
+}
+
 .modal-action-buttons {
     justify-content: flex-end;
     padding: 0.8rem 1rem;

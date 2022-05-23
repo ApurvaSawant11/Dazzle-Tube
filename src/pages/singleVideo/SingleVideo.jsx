@@ -18,8 +18,10 @@ import {
   ShareIcon,
 } from "../../assets";
 import { getRandomColor } from "../../utils/getRandomColor";
+import { useScrollToTop, useDocumentTitle } from "../../hooks";
 
 const SingleVideo = () => {
+  useScrollToTop();
   const { token, user } = useAuth();
   const { displayToast } = useToast();
   const [showCommentInput, setShowCommentInput] = useState(false);
@@ -30,7 +32,7 @@ const SingleVideo = () => {
   const location = useLocation();
   const { videos, dispatch } = useVideo();
   const video = videos?.find((video) => video._id === watchId);
-
+  useDocumentTitle(video.title);
   const likeHandler = (video) => {
     if (token) {
       if (video.isInLiked) {
@@ -226,6 +228,7 @@ const SingleVideo = () => {
           <div className="flex-row gap-2 mt-2 wrap content-between">
             {videos &&
               videos
+                .filter((video) => video._id !== watchId)
                 .slice(0, 8)
                 .map((video) => <VideoCard key={video._id} video={video} />)}
           </div>
