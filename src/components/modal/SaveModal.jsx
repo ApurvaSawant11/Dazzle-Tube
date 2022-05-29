@@ -15,11 +15,17 @@ import {
 } from "../../services";
 import "./modal.css";
 
-export const SaveModal = ({ video, showModal, setShowModal }) => {
+export const SaveModal = ({
+  video,
+  showModal,
+  setShowModal,
+  fromPlaylistPage,
+}) => {
   const { token } = useAuth();
   const { playlist, dispatch } = useVideo();
   const { displayToast } = useToast();
-  const [showNewPlaylistInput, setShowNewPlaylistInput] = useState(false);
+  const [showNewPlaylistInput, setShowNewPlaylistInput] =
+    useState(fromPlaylistPage);
   const [playlistName, setPlaylistName] = useState("");
 
   const watchLaterHandler = (e) => {
@@ -47,6 +53,7 @@ export const SaveModal = ({ video, showModal, setShowModal }) => {
       });
       setShowNewPlaylistInput(false);
       setPlaylistName("");
+      fromPlaylistPage && setShowModal(false);
     } else {
       displayToast({
         toastType: "error",
@@ -79,53 +86,56 @@ export const SaveModal = ({ video, showModal, setShowModal }) => {
         }}
         className="m-auto modal radius-0 border-1"
       >
-        <div className="flex-row-center content-between border-bottom-1 p-1">
-          Save to...
-          <button
-            onClick={() => setShowModal(!showModal)}
-            className="plain-button secondary-text"
-          >
-            <CloseIcon />
-          </button>
-        </div>
+        {!fromPlaylistPage && (
+          <>
+            <div className="flex-row-center content-between border-bottom-1 p-1 mb-1">
+              Save to...
+              <button
+                onClick={() => setShowModal(!showModal)}
+                className="plain-button secondary-text"
+              >
+                <CloseIcon />
+              </button>
+            </div>
 
-        <ul>
-          <li className="modal-list-item p-1">
-            <label htmlFor="watch-later" className="">
-              <input
-                type="checkbox"
-                name="watchLater"
-                id="watch-later"
-                checked={video.isInWatchLater}
-                onChange={watchLaterHandler}
-                className="checkbox-field mr-0p5"
-              />
-              Watch Later
-            </label>
-
-            <WatchLaterIcon size={18} />
-          </li>
-
-          {playlist &&
-            playlist.map((list) => (
-              <li className="modal-list-item p-1 pt-0" key={list._id}>
-                <label className="">
+            <ul>
+              <li className="modal-list-item p-1 pt-0">
+                <label htmlFor="watch-later" className="">
                   <input
                     type="checkbox"
                     name="watchLater"
-                    checked={list.videos.some(
-                      (listVideo) => listVideo._id === video._id
-                    )}
-                    onChange={(e) => playlistHandler(e, list._id)}
+                    id="watch-later"
+                    checked={video?.isInWatchLater}
+                    onChange={watchLaterHandler}
                     className="checkbox-field mr-0p5"
                   />
-                  {list.title}
+                  Watch Later
                 </label>
 
-                <NewPlaylistIcon size={16} />
+                <WatchLaterIcon size={18} />
               </li>
-            ))}
-        </ul>
+              {playlist &&
+                playlist.map((list) => (
+                  <li className="modal-list-item p-1 pt-0" key={list._id}>
+                    <label className="">
+                      <input
+                        type="checkbox"
+                        name="watchLater"
+                        checked={list.videos.some(
+                          (listVideo) => listVideo._id === video._id
+                        )}
+                        onChange={(e) => playlistHandler(e, list._id)}
+                        className="checkbox-field mr-0p5"
+                      />
+                      {list.title}
+                    </label>
+
+                    <NewPlaylistIcon size={16} />
+                  </li>
+                ))}
+            </ul>
+          </>
+        )}
 
         <div className="border-top-1">
           {!showNewPlaylistInput && (
